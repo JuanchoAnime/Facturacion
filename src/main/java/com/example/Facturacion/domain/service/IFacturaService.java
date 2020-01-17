@@ -2,9 +2,12 @@ package com.example.Facturacion.domain.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.Facturacion.domain.modeldomain.FacturaDomain;
 import com.example.Facturacion.shared.domain.Codigo;
 
+@Service
 public interface IFacturaService 
 {
 	List<FacturaDomain> GetAllFacturas();

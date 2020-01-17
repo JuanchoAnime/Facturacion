@@ -1,6 +1,7 @@
 package com.example.Facturacion.infrastructure.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,43 +13,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Facturacion.application.ProductoApplication;
-import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
+import com.example.Facturacion.application.FacturaApplication;
+import com.example.Facturacion.infrastructure.dto.FacturaRestDto;
 
 @RestController
-@RequestMapping("/api/producto")
-public class ProductoController
+@RequestMapping("/api/factura")
+public class FacturaController 
 {
 	@Autowired
-	private ProductoApplication app;
+	private FacturaApplication app;
 	
 	@GetMapping("/")
-	public List<ProductoRestDto> GetProductos()
+	public List<FacturaRestDto> GetFacturas()
 	{
-		return app.ObtenerProductos();
+		return app.ObtenerFacturas();
 	}
 	
 	@GetMapping("/{id}")
-	public ProductoRestDto GetProducto(@PathVariable String id) 
+	public FacturaRestDto GetFactura(@PathVariable String id)
 	{
-		return app.ObtenerProducto(id);
+		return app.ObtenerFactura(id);
 	}
 	
 	@PostMapping("/")
-	public ProductoRestDto AgregarProducto(@RequestBody ProductoRestDto producto) 
+	public FacturaRestDto AgregarFactura(@RequestBody FacturaRestDto factura)
 	{
-		return app.GuardarProducto(producto);
+		return app.GuardarFactura(factura);
 	}
 	
 	@PutMapping("/{id}")
-	public ProductoRestDto ActualizarProducto(@PathVariable String id, @RequestBody ProductoRestDto producto) 
+	public FacturaRestDto ActualizarFactura(@PathVariable String id, @RequestBody FacturaRestDto factura)
 	{
-		return app.ActualizarProducto(producto, id);
+		return app.ActualizarFactura(factura, id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void EliminarProducto(@PathVariable String id) 
+	public void EliminarFactura(@PathVariable String id) 
 	{
-		app.EliminarProducto(id);
+		app.EliminarFactura(id);
 	}
 }
+

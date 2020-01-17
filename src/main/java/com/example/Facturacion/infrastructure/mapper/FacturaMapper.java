@@ -1,6 +1,7 @@
 package com.example.Facturacion.infrastructure.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.example.Facturacion.domain.modeldomain.FacturaDomain;
 import com.example.Facturacion.infrastructure.dto.FacturaDto;
@@ -11,6 +12,7 @@ import com.example.Facturacion.shared.domain.Valor;
 import com.example.Facturacion.shared.infrastructure.MapperApiRest;
 import com.example.Facturacion.shared.infrastructure.MapperRepository;
 
+@Component
 public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, MapperRepository<FacturaDomain, FacturaRestDto> {
 
 	@Autowired

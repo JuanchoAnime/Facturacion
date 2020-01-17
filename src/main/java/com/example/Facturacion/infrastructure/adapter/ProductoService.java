@@ -38,22 +38,19 @@ public class ProductoService implements IProductoService
 	public ProductoDomain GuardarProducto(ProductoDomain producto) 
 	{
 		ProductoDto p = producMapper.dominiodtoapi(producto);
-		repo.save(p);
-		return  producMapper.dtoDominioapi(p);
+		return  producMapper.dtoDominioapi(repo.save(p));
 	}
 
 	@Override
-	public ProductoDomain ActuaizarProducto(ProductoDomain producto, Codigo codigo) 
+	public ProductoDomain ActuaizarProducto(ProductoDomain producto) 
 	{
 		ProductoDto p = producMapper.dominiodtoapi(producto);
-		repo.save(p);
-		return  producMapper.dtoDominioapi(p);
+		return  producMapper.dtoDominioapi(repo.save(p));
 	}
 
 	@Override
-	public void EliminarProducto(Codigo codigo) {
-		ProductoDto p = repo.findById(codigo.getCodigo()).get();
-		repo.delete(p);
-		
+	public void EliminarProducto(Codigo codigo)
+	{
+		repo.deleteById(codigo.getCodigo());
 	}
 }

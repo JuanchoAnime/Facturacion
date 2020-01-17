@@ -33,7 +33,7 @@ public class ProductoApplication
 	
 	public ProductoRestDto GuardarProducto(ProductoRestDto product) 
 	{
-		product.setCodigo(getId());
+		product.setCodigo(GetID.GetId());
 		ProductoDomain p = service.GuardarProducto(proMapper.dtoDominio(product));
 		return proMapper.dominiodto(p);
 	}
@@ -41,7 +41,7 @@ public class ProductoApplication
 	public ProductoRestDto ActualizarProducto(ProductoRestDto product, String codigo) 
 	{
 		product.setCodigo(codigo);
-		ProductoDomain p = service.ActuaizarProducto((proMapper.dtoDominio(product)), new Codigo(codigo));
+		ProductoDomain p = service.ActuaizarProducto((proMapper.dtoDominio(product)));
 		return proMapper.dominiodto(p);
 	}
 	
@@ -50,5 +50,5 @@ public class ProductoApplication
 		service.EliminarProducto(new Codigo(codigo));
 	}
 	
-	private String getId() { return UUID.randomUUID().toString().replace("-", "");}
+	
 }

@@ -16,7 +16,7 @@ public interface IProductoService
 	
 	ProductoDomain GuardarProducto(ProductoDomain producto);
 	
-	ProductoDomain ActuaizarProducto(ProductoDomain producto, Codigo codigo);
+	ProductoDomain ActuaizarProducto(ProductoDomain producto);
 	
 	void EliminarProducto(Codigo codigo);
 }
