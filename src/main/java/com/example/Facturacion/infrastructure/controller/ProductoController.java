@@ -22,7 +22,7 @@ public class ProductoController
 	@Autowired
 	private ProductoApplication app;
 	
-	@GetMapping("/")
+	@GetMapping
 	public List<ProductoRestDto> GetProductos()
 	{
 		return app.ObtenerProductos();
@@ -34,7 +34,7 @@ public class ProductoController
 		return app.ObtenerProducto(id);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	public ProductoRestDto AgregarProducto(@RequestBody ProductoRestDto producto) 
 	{
 		return app.GuardarProducto(producto);

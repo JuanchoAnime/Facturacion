@@ -4,40 +4,27 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "producto")
+@NoArgsConstructor
 public class ProductoDto extends BaseEntity 
 {
 	private static final long serialVersionUID = 1L;
 
 	@Column
-	private String nombre;
+	@Getter @Setter private String nombre;
 	
 	@Column
-	private Double valor;
-	
-	public ProductoDto() {
-		// TODO Auto-generated constructor stub
-	}
+	@Getter @Setter private Double valor;
 	
 	public ProductoDto(String codigo, String nombre, Double valor) {
 		super();
 		this.setCodigo(codigo);
 		this.nombre = nombre;
 		this.valor = valor;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
+	}	
 }

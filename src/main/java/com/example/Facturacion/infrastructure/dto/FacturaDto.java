@@ -8,45 +8,29 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "factura")
+@NoArgsConstructor
 public class FacturaDto extends BaseEntity 
 {
+	private static final long serialVersionUID = 1L;
+	
 	@Column
-	private String nombre;
+	@Getter @Setter private String nombre;
 	@Column
-	private Double valor;
+	@Getter @Setter private Double valor;
 	@Column
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<ItemDto> item;
-	
-	public FacturaDto() {
-		// TODO Auto-generated constructor stub
-	}
+	@Getter @Setter private List<ItemDto> item;
 	
 	public FacturaDto(String codigo, String nombre, Double valor, List<ItemDto> item) {
 		this.setCodigo(codigo);
 		this.nombre = nombre;
 		this.valor = valor;
 		this.item = item;
-	}
-
-	public List<ItemDto> getItem() {
-		return item;
-	}
-	public void setItem(List<ItemDto> item) {
-		this.item = item;
-	}
-	public Double getValor() {
-		return valor;
-	}
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 }

@@ -1,8 +1,6 @@
 package com.example.Facturacion.application;
 
 import java.util.List;
-import java.util.UUID;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +10,7 @@ import com.example.Facturacion.domain.service.IProductoService;
 import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
 import com.example.Facturacion.infrastructure.mapper.ProductoMapper;
 import com.example.Facturacion.shared.domain.Codigo;
+
 @Component
 public class ProductoApplication 
 {

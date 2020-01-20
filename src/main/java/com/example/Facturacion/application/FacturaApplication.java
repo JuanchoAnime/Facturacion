@@ -1,15 +1,11 @@
 package com.example.Facturacion.application;
 
 import java.util.List;
-import java.util.logging.Logger;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.Facturacion.domain.modeldomain.ProductoDomain;
 import com.example.Facturacion.domain.service.IFacturaService;
 import com.example.Facturacion.domain.service.IProductoService;
 import com.example.Facturacion.infrastructure.dto.FacturaRestDto;

@@ -1,7 +1,6 @@
 package com.example.Facturacion.infrastructure.controller;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +22,7 @@ public class FacturaController
 	@Autowired
 	private FacturaApplication app;
 	
-	@GetMapping("/")
+	@GetMapping
 	public List<FacturaRestDto> GetFacturas()
 	{
 		return app.ObtenerFacturas();
@@ -35,7 +34,7 @@ public class FacturaController
 		return app.ObtenerFactura(id);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	public FacturaRestDto AgregarFactura(@RequestBody FacturaRestDto factura)
 	{
 		return app.GuardarFactura(factura);

@@ -5,22 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "item")
+@NoArgsConstructor
 public class ItemDto extends BaseEntity 
 {
+	private static final long serialVersionUID = 1L;
+
 	@Column
-	private int cantidad;
+	@Getter @Setter private int cantidad;
 	
 	@OneToOne(targetEntity = ProductoDto.class)
-	private ProductoDto producto;
+	@Getter @Setter private ProductoDto producto;
 	
 	@Column
-	private Double valor;
-	
-	public ItemDto() {
-		// TODO Auto-generated constructor stub
-	}
+	@Getter @Setter private Double valor;
 	
 	public ItemDto(String codigo, int cantidad, Double valor, ProductoDto producto) {
 		this.setCodigo(codigo);
@@ -28,28 +31,4 @@ public class ItemDto extends BaseEntity
 		this.valor = valor;
 		this.producto = producto;
 	}
-
-
-	public Double getValor() {
-		return valor;
-	}
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-
-	public ProductoDto getProducto() {
-		return producto;
-	}
-	public void setProducto(ProductoDto producto) {
-		this.producto = producto;
-	}
-
-
-	public int getCantidad() {
-		return cantidad;
-	}
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	} 
 }

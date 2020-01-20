@@ -1,7 +1,6 @@
 package com.example.Facturacion.infrastructure.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.Calendar;
 
 import javax.persistence.Column;
