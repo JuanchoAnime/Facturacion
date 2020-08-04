@@ -48,12 +48,6 @@ public class FacturaController
 		return app.save(factura);
 	}
 	
-	@PutMapping("/{id}")
-	public FacturaRestDto update(@PathVariable String id, @RequestBody FacturaRestDto factura)
-	{
-		return app.update(factura, id);
-	}
-	
 	@DeleteMapping("/{id}")
 	public void deleteByCode(@PathVariable String id)
 	{

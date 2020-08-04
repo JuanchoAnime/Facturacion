@@ -39,13 +39,6 @@ public class FacturaAdapter implements FacturaService
 	}
 
 	@Override
-	public FacturaDomain update(FacturaDomain factura)
-	{
-		this.findByCode(factura.getCodigo());
-		return this.save(factura);
-	}
-
-	@Override
 	public void deleteByCode(Codigo codigo)
 	{
 		this.findByCode(codigo);

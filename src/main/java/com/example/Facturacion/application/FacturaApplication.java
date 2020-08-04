@@ -49,11 +49,6 @@ public class FacturaApplication
 		
 	}
 
-	public FacturaRestDto update(FacturaRestDto factura, String codigo) {
-		factura.setCodigo(codigo);
-		return FacturaMapper.INSTANCE.dominiodto(this.service.update(FacturaMapper.INSTANCE.dtoDominio(factura)));
-	}
-	
 	public void deleteByCode (String codigo)
 	{
 		service.deleteByCode(new Codigo(codigo));

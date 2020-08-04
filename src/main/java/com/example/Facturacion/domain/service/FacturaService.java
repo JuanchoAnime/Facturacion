@@ -12,8 +12,6 @@ public interface FacturaService
 	FacturaDomain findByCode(Codigo codigo);
 	
 	FacturaDomain save(FacturaDomain factura);
-	
-	FacturaDomain update(FacturaDomain factura);
-	
+
 	void deleteByCode(Codigo codigo);
 }
