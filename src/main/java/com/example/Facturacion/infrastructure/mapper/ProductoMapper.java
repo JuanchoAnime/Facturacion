@@ -1,8 +1,5 @@
 package com.example.Facturacion.infrastructure.mapper;
 
-import org.springframework.stereotype.Component;
-
-
 import com.example.Facturacion.domain.modeldomain.ProductoDomain;
 import com.example.Facturacion.infrastructure.dto.ProductoDto;
 import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
@@ -11,8 +8,10 @@ import com.example.Facturacion.shared.domain.Nombre;
 import com.example.Facturacion.shared.domain.Valor;
 import com.example.Facturacion.shared.infrastructure.MapperApiRest;
 import com.example.Facturacion.shared.infrastructure.MapperRepository;
-@Component
+
 public class ProductoMapper implements MapperApiRest<ProductoDomain, ProductoDto>, MapperRepository<ProductoDomain, ProductoRestDto> {
+
+	public static ProductoMapper INSTANCE = new ProductoMapper();
 
 	@Override
 	public ProductoDomain dtoDominio(ProductoRestDto o) {

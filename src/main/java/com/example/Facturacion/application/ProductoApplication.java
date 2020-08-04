@@ -2,52 +2,43 @@ package com.example.Facturacion.application;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.example.Facturacion.domain.modeldomain.ProductoDomain;
-import com.example.Facturacion.domain.service.IProductoService;
+import com.example.Facturacion.domain.service.ProductoService;
 import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
 import com.example.Facturacion.infrastructure.mapper.ProductoMapper;
 import com.example.Facturacion.shared.domain.Codigo;
 
-@Component
 public class ProductoApplication 
 {
-	@Autowired
-	private IProductoService service;
-	@Autowired
-	private ProductoMapper proMapper;
-	
-	public List<ProductoRestDto> ObtenerProductos()
+	private ProductoService service;
+
+	public ProductoApplication(ProductoService service) {
+		this.service = service;
+	}
+
+	public List<ProductoRestDto> findAll()
 	{
-		return proMapper.dominiodto(service.GetAllProductos());
+		return ProductoMapper.INSTANCE.dominiodto(service.findAll());
 	}
 	
-	public ProductoRestDto ObtenerProducto(String codigo)
+	public ProductoRestDto findByCode(String codigo)
 	{
-		ProductoDomain p = service.ObtenerPorID(new Codigo(codigo));
-		return proMapper.dominiodto(p);
+		return ProductoMapper.INSTANCE.dominiodto(service.findByCode(new Codigo(codigo)));
 	}
 	
-	public ProductoRestDto GuardarProducto(ProductoRestDto product) 
+	public ProductoRestDto save(ProductoRestDto product)
 	{
 		product.setCodigo(GetID.GetId());
-		ProductoDomain p = service.GuardarProducto(proMapper.dtoDominio(product));
-		return proMapper.dominiodto(p);
+		return ProductoMapper.INSTANCE.dominiodto(service.save(ProductoMapper.INSTANCE.dtoDominio(product)));
 	}
 	
-	public ProductoRestDto ActualizarProducto(ProductoRestDto product, String codigo) 
+	public ProductoRestDto update(ProductoRestDto product, String codigo)
 	{
 		product.setCodigo(codigo);
-		ProductoDomain p = service.ActuaizarProducto((proMapper.dtoDominio(product)));
-		return proMapper.dominiodto(p);
+		return ProductoMapper.INSTANCE.dominiodto(service.update((ProductoMapper.INSTANCE.dtoDominio(product))));
 	}
 	
-	public void EliminarProducto(String codigo)
+	public void deleteByCode(String codigo)
 	{
-		service.EliminarProducto(new Codigo(codigo));
+		service.deleteByCode(new Codigo(codigo));
 	}
-	
-	
 }

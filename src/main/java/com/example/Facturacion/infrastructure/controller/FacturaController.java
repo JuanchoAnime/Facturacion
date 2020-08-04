@@ -2,6 +2,9 @@ package com.example.Facturacion.infrastructure.controller;
 
 import java.util.List;
 
+import com.example.Facturacion.domain.service.FacturaService;
+import com.example.Facturacion.domain.service.ProductoService;
+import com.example.Facturacion.infrastructure.adapter.FacturaAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,37 +22,42 @@ import com.example.Facturacion.infrastructure.dto.FacturaRestDto;
 @RequestMapping("/api/factura")
 public class FacturaController 
 {
-	@Autowired
 	private FacturaApplication app;
+
+	@Autowired
+	public FacturaController(FacturaService service,
+							 ProductoService serviceProducto){
+		this.app = new FacturaApplication(service, serviceProducto);
+	}
 	
 	@GetMapping
-	public List<FacturaRestDto> GetFacturas()
+	public List<FacturaRestDto> findAll()
 	{
-		return app.ObtenerFacturas();
+		return app.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public FacturaRestDto GetFactura(@PathVariable String id)
+	public FacturaRestDto findByCode(@PathVariable String id)
 	{
-		return app.ObtenerFactura(id);
+		return app.findByCode(id);
 	}
 	
 	@PostMapping
-	public FacturaRestDto AgregarFactura(@RequestBody FacturaRestDto factura)
+	public FacturaRestDto save(@RequestBody FacturaRestDto factura)
 	{
-		return app.GuardarFactura(factura);
+		return app.save(factura);
 	}
 	
 	@PutMapping("/{id}")
-	public FacturaRestDto ActualizarFactura(@PathVariable String id, @RequestBody FacturaRestDto factura)
+	public FacturaRestDto update(@PathVariable String id, @RequestBody FacturaRestDto factura)
 	{
-		return app.ActualizarFactura(factura, id);
+		return app.update(factura, id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void EliminarFactura(@PathVariable String id) 
+	public void deleteByCode(@PathVariable String id)
 	{
-		app.EliminarFactura(id);
+		app.deleteByCode(id);
 	}
 }
 

@@ -1,8 +1,5 @@
 package com.example.Facturacion.infrastructure.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.example.Facturacion.domain.modeldomain.FacturaDomain;
 import com.example.Facturacion.infrastructure.dto.FacturaDto;
 import com.example.Facturacion.infrastructure.dto.FacturaRestDto;
@@ -12,18 +9,16 @@ import com.example.Facturacion.shared.domain.Valor;
 import com.example.Facturacion.shared.infrastructure.MapperApiRest;
 import com.example.Facturacion.shared.infrastructure.MapperRepository;
 
-@Component
 public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, MapperRepository<FacturaDomain, FacturaRestDto> {
 
-	@Autowired
-	private ItemMapper itemMapper;
-	
+	public static FacturaMapper INSTANCE = new FacturaMapper();
+
 	@Override
 	public FacturaDomain dtoDominio(FacturaRestDto o) {
 		return FacturaDomain.of(new Codigo(o.getCodigo())
 								, new Nombre(o.getNombre())
 								, new Valor(o.getValor())
-								, itemMapper.dtoDominio(o.getItems()));
+								, ItemMapper.INSTANCE.dtoDominio(o.getItems()));
 	}
 
 	@Override
@@ -31,7 +26,7 @@ public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, 
 		return new FacturaRestDto(i.getCodigo().getCodigo()
 							 , i.getNombre().getName()
 							 , i.getValor().getValor()
-							 , itemMapper.dominiodto(i.getItems()));
+							 , ItemMapper.INSTANCE.dominiodto(i.getItems()));
 	}
 
 	@Override
@@ -39,7 +34,7 @@ public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, 
 		return FacturaDomain.of(new Codigo(o.getCodigo())
 							  , new Nombre(o.getNombre())
 							  , new Valor(o.getValor())
-							  , itemMapper.dtoDominioapi(o.getItem()));
+							  , ItemMapper.INSTANCE.dtoDominioapi(o.getItem()));
 	}
 
 	@Override
@@ -47,7 +42,7 @@ public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, 
 		return new FacturaDto(i.getCodigo().getCodigo()
 							, i.getNombre().getName()
 							, i.getValor().getValor()
-							, itemMapper.dominiodtoapi(i.getItems()));
+							, ItemMapper.INSTANCE.dominiodtoapi(i.getItems()));
 	}
 
 }

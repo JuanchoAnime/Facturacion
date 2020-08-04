@@ -3,46 +3,41 @@ package com.example.Facturacion.application;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.example.Facturacion.domain.service.IFacturaService;
-import com.example.Facturacion.domain.service.IProductoService;
+import com.example.Facturacion.domain.service.FacturaService;
+import com.example.Facturacion.domain.service.ProductoService;
 import com.example.Facturacion.infrastructure.dto.FacturaRestDto;
-import com.example.Facturacion.infrastructure.dto.ItemRestDto;
 import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
 import com.example.Facturacion.infrastructure.mapper.FacturaMapper;
 import com.example.Facturacion.infrastructure.mapper.ProductoMapper;
 import com.example.Facturacion.shared.domain.Codigo;;
 
-@Component
 public class FacturaApplication 
 {
-	@Autowired
-	private IFacturaService service;
-	@Autowired
-	private IProductoService serviceProducto;
-	@Autowired
-	private FacturaMapper mapper;
-	@Autowired
-	private ProductoMapper mapperProducto;
+	private FacturaService service;
+	private ProductoService serviceProducto;
 
-	public List<FacturaRestDto> ObtenerFacturas()
+	public FacturaApplication(FacturaService service,
+							  ProductoService serviceProducto) {
+		this.service = service;
+		this.serviceProducto = serviceProducto;
+	}
+
+	public List<FacturaRestDto> findAll()
 	{
-		return mapper.dominiodto(service.GetAllFacturas());
+		return FacturaMapper.INSTANCE.dominiodto(service.findAll());
 	}
 	
-	public FacturaRestDto ObtenerFactura(String codigo) 
+	public FacturaRestDto findByCode(String codigo)
 	{
-		return mapper.dominiodto(service.ObtenerPorId(new Codigo(codigo)));
+		return FacturaMapper.INSTANCE.dominiodto(service.findByCode(new Codigo(codigo)));
 	}
 	
-	public FacturaRestDto GuardarFactura(FacturaRestDto factura) 
+	public FacturaRestDto save(FacturaRestDto factura)
 	{
 		factura.setCodigo(GetID.GetId());
-		List<ProductoRestDto> productrestdto = factura.getItems().stream().map(
-														irdto -> BuscarProductByItem(irdto)
-												 ).collect(Collectors.toList());
+		List<ProductoRestDto> productrestdto =  ProductoMapper.INSTANCE.dominiodto(serviceProducto.findByCodes(
+				factura.getItems().stream().map(irdto -> new Codigo(irdto.getProducto().getCodigo())).collect(Collectors.toList())
+		));
 		factura.getItems().stream().forEach(item -> {
 			item.setCodigo(GetID.GetId());
 			item.setProducto(productrestdto.stream().filter(pro -> pro.getCodigo().equals(item.getProducto().getCodigo())).findFirst().get());
@@ -50,27 +45,17 @@ public class FacturaApplication
 			
 		});
 		factura.setValor(factura.getItems().stream().mapToDouble(item -> item.getValor()).sum());
-		return mapper.dominiodto(service.GuardarFactura(mapper.dtoDominio(factura)));
+		return FacturaMapper.INSTANCE.dominiodto(service.save(FacturaMapper.INSTANCE.dtoDominio(factura)));
 		
 	}
-	
-	private ProductoRestDto BuscarProductByItem(ItemRestDto ird) 
-	{
-		return mapperProducto.dominiodto(
-			serviceProducto.ObtenerPorID(
-					new Codigo(ird.getProducto().getCodigo())
-			)
-		);
-	}
-	
-	
-	public FacturaRestDto ActualizarFactura(FacturaRestDto factura, String codigo) {
+
+	public FacturaRestDto update(FacturaRestDto factura, String codigo) {
 		factura.setCodigo(codigo);
-		return null;
+		return FacturaMapper.INSTANCE.dominiodto(this.service.update(FacturaMapper.INSTANCE.dtoDominio(factura)));
 	}
 	
-	public void EliminarFactura (String codigo) 
+	public void deleteByCode (String codigo)
 	{
-		service.EliminarFacturaPorId(new Codigo(codigo));
+		service.deleteByCode(new Codigo(codigo));
 	}
 }

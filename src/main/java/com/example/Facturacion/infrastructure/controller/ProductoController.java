@@ -2,6 +2,7 @@ package com.example.Facturacion.infrastructure.controller;
 
 import java.util.List;
 
+import com.example.Facturacion.domain.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,36 +20,40 @@ import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
 @RequestMapping("/api/producto")
 public class ProductoController
 {
-	@Autowired
 	private ProductoApplication app;
-	
+
+	@Autowired
+	public ProductoController(ProductoService productService) {
+		this.app = new ProductoApplication(productService);
+	}
+
 	@GetMapping
-	public List<ProductoRestDto> GetProductos()
+	public List<ProductoRestDto> findAll()
 	{
-		return app.ObtenerProductos();
+		return app.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ProductoRestDto GetProducto(@PathVariable String id) 
+	public ProductoRestDto findByCode(@PathVariable String id)
 	{
-		return app.ObtenerProducto(id);
+		return app.findByCode(id);
 	}
 	
 	@PostMapping
-	public ProductoRestDto AgregarProducto(@RequestBody ProductoRestDto producto) 
+	public ProductoRestDto save(@RequestBody ProductoRestDto producto)
 	{
-		return app.GuardarProducto(producto);
+		return app.save(producto);
 	}
 	
 	@PutMapping("/{id}")
-	public ProductoRestDto ActualizarProducto(@PathVariable String id, @RequestBody ProductoRestDto producto) 
+	public ProductoRestDto update(@PathVariable String id, @RequestBody ProductoRestDto producto)
 	{
-		return app.ActualizarProducto(producto, id);
+		return app.update(producto, id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void EliminarProducto(@PathVariable String id) 
+	public void deleteByCode(@PathVariable String id)
 	{
-		app.EliminarProducto(id);
+		app.deleteByCode(id);
 	}
 }
