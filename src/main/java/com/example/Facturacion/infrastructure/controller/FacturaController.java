@@ -47,7 +47,7 @@ public class FacturaController
 	{
 		return app.save(factura);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void deleteByCode(@PathVariable String id)
 	{
