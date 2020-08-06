@@ -1,4 +1,4 @@
-package com.example.Facturacion.domain.valueobjects;
+package com.example.Facturacion.shared.domain;
 
 import com.example.Facturacion.infrastructure.exception.CantidadErrorException;
 

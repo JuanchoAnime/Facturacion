@@ -3,7 +3,6 @@ package com.example.Facturacion.infrastructure.dto;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,11 +20,9 @@ public class FacturaDto extends BaseEntity
 {
 	private static final long serialVersionUID = 1L;
 	
-	@Column
 	private String nombre;
-	@Column
+
 	private Double valor;
-	@Column
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<ItemDto> item;
 	

@@ -16,9 +16,14 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Getter;
+import lombok.Setter;
+
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@Getter
+@Setter
 public class BaseEntity implements Serializable 
 {
 	private static final long serialVersionUID = 1L;
@@ -37,25 +42,4 @@ public class BaseEntity implements Serializable
 	@LastModifiedDate
 	@UpdateTimestamp
 	private Calendar  fechaModificacion;
-
-	public String getCodigo() {
-		return codigo; 
-	}
-	public void setCodigo(String codigo) { 
-		this.codigo = codigo;
-	}
-	
-	public Calendar  getFechaCreacion() {
-		return fechaCreacion;
-	}
-	public void setFechaCreacion(Calendar  fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-	
-	public Calendar  getFechaModificacion() {
-		return fechaModificacion;
-	}
-	public void setFechaModificacion(Calendar fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
-	}
 }

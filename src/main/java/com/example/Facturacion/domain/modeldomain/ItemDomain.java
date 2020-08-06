@@ -1,15 +1,15 @@
 package com.example.Facturacion.domain.modeldomain;
 
-import com.example.Facturacion.domain.valueobjects.Cantidad;
+import com.example.Facturacion.shared.domain.Cantidad;
 import com.example.Facturacion.shared.domain.Codigo;
 import com.example.Facturacion.shared.domain.Valor;
 
 public class ItemDomain 
 {
-	private Cantidad cantidad;
-	private Codigo codigo;
-	private ProductoDomain producto;
-	private Valor valor;
+	private final Cantidad cantidad;
+	private final Codigo codigo;
+	private final ProductoDomain producto;
+	private final Valor valor;
 	
 	private ItemDomain(Codigo codigo, Cantidad cantidad, ProductoDomain producto, Valor valor) {
 		this.codigo = codigo;

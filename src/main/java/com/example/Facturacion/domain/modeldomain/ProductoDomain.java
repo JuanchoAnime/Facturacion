@@ -6,9 +6,9 @@ import com.example.Facturacion.shared.domain.Valor;
 
 public class ProductoDomain 
 {
-	private Codigo codigo;
-	private Nombre nombre;
-	private Valor valor;
+	private final Codigo codigo;
+	private final Nombre nombre;
+	private final Valor valor;
 	
 	private ProductoDomain(Codigo codigo, Nombre nombre, Valor valor) {
 		this.codigo = codigo;

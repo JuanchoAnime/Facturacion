@@ -1,6 +1,5 @@
 package com.example.Facturacion.infrastructure.dto;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -17,9 +16,7 @@ public class ProductoDto extends BaseEntity
 {
 	private static final long serialVersionUID = 1L;
 
-	@Column
 	private String nombre;
-	@Column
 	private Double valor;
 	
 	public ProductoDto(String codigo, String nombre, Double valor) {

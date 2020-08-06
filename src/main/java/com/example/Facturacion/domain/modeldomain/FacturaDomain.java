@@ -8,10 +8,10 @@ import com.example.Facturacion.shared.domain.Valor;
 
 public class FacturaDomain 
 {
-	private Codigo codigo;
-	private Nombre nombre;
-	private Valor valor;
-	private List<ItemDomain> items;
+	private final Codigo codigo;
+	private final Nombre nombre;
+	private final Valor valor;
+	private final List<ItemDomain> items;
 	
 	private FacturaDomain(Codigo codigo, Nombre nombre, Valor valor, List<ItemDomain> items) {
 		this.codigo = codigo;
