@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Facturacion.application.FacturaApplication;
-import com.example.Facturacion.infrastructure.rest.FacturaRestDto;
+import com.example.Facturacion.infrastructure.rest.FacturaRest;
 
 @RestController
 @RequestMapping("/api/factura")
@@ -29,19 +29,19 @@ public class FacturaController
 	}
 	
 	@GetMapping
-	public List<FacturaRestDto> findAll()
+	public List<FacturaRest> findAll()
 	{
 		return app.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public FacturaRestDto findByCode(@PathVariable String id)
+	public FacturaRest findByCode(@PathVariable String id)
 	{
 		return app.findByCode(id);
 	}
 	
 	@PostMapping
-	public FacturaRestDto save(@RequestBody FacturaRestDto factura)
+	public FacturaRest save(@RequestBody FacturaRest factura)
 	{
 		return app.save(factura);
 	}

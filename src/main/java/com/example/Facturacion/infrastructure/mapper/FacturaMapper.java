@@ -2,19 +2,19 @@ package com.example.Facturacion.infrastructure.mapper;
 
 import com.example.Facturacion.domain.modeldomain.FacturaDomain;
 import com.example.Facturacion.infrastructure.dto.FacturaDto;
-import com.example.Facturacion.infrastructure.rest.FacturaRestDto;
+import com.example.Facturacion.infrastructure.rest.FacturaRest;
 import com.example.Facturacion.shared.domain.Codigo;
 import com.example.Facturacion.shared.domain.Nombre;
 import com.example.Facturacion.shared.domain.Valor;
 import com.example.Facturacion.shared.infrastructure.MapperApiRest;
 import com.example.Facturacion.shared.infrastructure.MapperRepository;
 
-public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, MapperRepository<FacturaDomain, FacturaRestDto> {
+public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, MapperRepository<FacturaDomain, FacturaRest> {
 
 	public static FacturaMapper INSTANCE = new FacturaMapper();
 
 	@Override
-	public FacturaDomain dtoDominio(FacturaRestDto o) {
+	public FacturaDomain dtoDominio(FacturaRest o) {
 		return FacturaDomain.of(new Codigo(o.getCodigo())
 								, new Nombre(o.getNombre())
 								, new Valor(o.getValor())
@@ -22,8 +22,8 @@ public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, 
 	}
 
 	@Override
-	public FacturaRestDto dominiodto(FacturaDomain i) {
-		return new FacturaRestDto(i.getCodigo().getCodigo()
+	public FacturaRest dominiodto(FacturaDomain i) {
+		return new FacturaRest(i.getCodigo().getCodigo()
 							 , i.getNombre().getName()
 							 , i.getValor().getValor()
 							 , ItemMapper.INSTANCE.dominiodto(i.getItems()));

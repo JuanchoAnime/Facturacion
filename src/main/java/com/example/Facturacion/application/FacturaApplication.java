@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import com.example.Facturacion.domain.service.FacturaService;
 import com.example.Facturacion.domain.service.ProductoService;
-import com.example.Facturacion.infrastructure.rest.FacturaRestDto;
-import com.example.Facturacion.infrastructure.rest.ProductoRestDto;
+import com.example.Facturacion.infrastructure.rest.FacturaRest;
+import com.example.Facturacion.infrastructure.rest.ProductoRest;
 import com.example.Facturacion.infrastructure.mapper.FacturaMapper;
 import com.example.Facturacion.infrastructure.mapper.ProductoMapper;
 import com.example.Facturacion.shared.domain.Codigo;;
@@ -22,20 +22,20 @@ public class FacturaApplication
 		this.serviceProducto = serviceProducto;
 	}
 
-	public List<FacturaRestDto> findAll()
+	public List<FacturaRest> findAll()
 	{
 		return FacturaMapper.INSTANCE.dominiodto(service.findAll());
 	}
 	
-	public FacturaRestDto findByCode(String codigo)
+	public FacturaRest findByCode(String codigo)
 	{
 		return FacturaMapper.INSTANCE.dominiodto(service.findByCode(new Codigo(codigo)));
 	}
 	
-	public FacturaRestDto save(FacturaRestDto factura)
+	public FacturaRest save(FacturaRest factura)
 	{
 		factura.setCodigo(GetID.GetId());
-		List<ProductoRestDto> productrestdto =  ProductoMapper.INSTANCE.dominiodto(serviceProducto.findByCodes(
+		List<ProductoRest> productrestdto =  ProductoMapper.INSTANCE.dominiodto(serviceProducto.findByCodes(
 				factura.getItems().stream().map(irdto -> new Codigo(irdto.getProducto().getCodigo())).collect(Collectors.toList())
 		));
 		factura.getItems().stream().forEach(item -> {

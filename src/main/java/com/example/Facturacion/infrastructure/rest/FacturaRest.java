@@ -10,10 +10,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class FacturaRestDto 
+public class FacturaRest 
 {
 	private String codigo;
 	private String nombre;
 	private Double valor;
-	private List<ItemRestDto> items;
+	private List<ItemRest> items;
 }

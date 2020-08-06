@@ -3,7 +3,7 @@ package com.example.Facturacion.application;
 import java.util.List;
 
 import com.example.Facturacion.domain.service.ProductoService;
-import com.example.Facturacion.infrastructure.rest.ProductoRestDto;
+import com.example.Facturacion.infrastructure.rest.ProductoRest;
 import com.example.Facturacion.infrastructure.mapper.ProductoMapper;
 import com.example.Facturacion.shared.domain.Codigo;
 
@@ -15,23 +15,23 @@ public class ProductoApplication
 		this.service = service;
 	}
 
-	public List<ProductoRestDto> findAll()
+	public List<ProductoRest> findAll()
 	{
 		return ProductoMapper.INSTANCE.dominiodto(service.findAll());
 	}
 	
-	public ProductoRestDto findByCode(String codigo)
+	public ProductoRest findByCode(String codigo)
 	{
 		return ProductoMapper.INSTANCE.dominiodto(service.findByCode(new Codigo(codigo)));
 	}
 	
-	public ProductoRestDto save(ProductoRestDto product)
+	public ProductoRest save(ProductoRest product)
 	{
 		product.setCodigo(GetID.GetId());
 		return ProductoMapper.INSTANCE.dominiodto(service.save(ProductoMapper.INSTANCE.dtoDominio(product)));
 	}
 	
-	public ProductoRestDto update(ProductoRestDto product, String codigo)
+	public ProductoRest update(ProductoRest product, String codigo)
 	{
 		product.setCodigo(codigo);
 		return ProductoMapper.INSTANCE.dominiodto(service.update((ProductoMapper.INSTANCE.dtoDominio(product))));

@@ -8,9 +8,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class ProductoRestDto 
+public class ItemRest 
 {
 	private String codigo;
-	private String nombre;
+	private int cantidad;
+	private ProductoRest producto;
 	private Double valor;
 }

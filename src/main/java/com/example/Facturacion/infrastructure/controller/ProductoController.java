@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Facturacion.application.ProductoApplication;
-import com.example.Facturacion.infrastructure.rest.ProductoRestDto;
+import com.example.Facturacion.infrastructure.rest.ProductoRest;
 
 @RestController
 @RequestMapping("/api/producto")
@@ -28,25 +28,25 @@ public class ProductoController
 	}
 
 	@GetMapping
-	public List<ProductoRestDto> findAll()
+	public List<ProductoRest> findAll()
 	{
 		return app.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ProductoRestDto findByCode(@PathVariable String id)
+	public ProductoRest findByCode(@PathVariable String id)
 	{
 		return app.findByCode(id);
 	}
 	
 	@PostMapping
-	public ProductoRestDto save(@RequestBody ProductoRestDto producto)
+	public ProductoRest save(@RequestBody ProductoRest producto)
 	{
 		return app.save(producto);
 	}
 	
 	@PutMapping("/{id}")
-	public ProductoRestDto update(@PathVariable String id, @RequestBody ProductoRestDto producto)
+	public ProductoRest update(@PathVariable String id, @RequestBody ProductoRest producto)
 	{
 		return app.update(producto, id);
 	}
