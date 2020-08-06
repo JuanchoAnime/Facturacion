@@ -29,7 +29,7 @@ public class FacturaAdapter implements FacturaService
 	@Override
 	public FacturaDomain findByCode(Codigo codigo)
 	{
-		return FacturaMapper.INSTANCE.dtoDominioapi(repo.findById(codigo.getCodigo()).get());
+		return FacturaMapper.INSTANCE.dtoDominioapi(repo.findById(codigo.getValue()).get());
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class FacturaAdapter implements FacturaService
 	public void deleteByCode(Codigo codigo)
 	{
 		this.findByCode(codigo);
-		repo.deleteById(codigo.getCodigo());
+		repo.deleteById(codigo.getValue());
 	}
 
 }

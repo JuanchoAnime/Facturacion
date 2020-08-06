@@ -3,11 +3,11 @@ package com.example.Facturacion.shared.domain;
 import com.example.Facturacion.infrastructure.exception.InvalidateNameException;
 
 public class Nombre {
-	private final String name;
+	private final String value;
 	
 	public Nombre(String name) {
 		try {
-			this.name = name;
+			this.value = name;
 			if (name.length() < 0)
 				throw new InvalidateNameException();
 			if(!name.matches("[A-Z].*")) 
@@ -17,7 +17,7 @@ public class Nombre {
 		}
 	}
 
-	public String getName() {
-		return name;
+	public String getValue() {
+		return value;
 	}
 }

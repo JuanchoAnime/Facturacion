@@ -24,10 +24,10 @@ public class ItemMapper implements MapperApiRest<ItemDomain, ItemDto>, MapperRep
 
 	@Override
 	public ItemRest dominiodto(ItemDomain i) {
-		return new ItemRest(i.getCodigo().getCodigo()
-						  , i.getCantidad().getCantidad()
+		return new ItemRest(i.getCodigo().getValue()
+						  , i.getCantidad().getValue()
 						  , ProductoMapper.INSTANCE.dominiodto(i.getProducto())
-						  , i.getValor().getValor());
+						  , i.getValor().getValue());
 	}
 
 	@Override
@@ -40,9 +40,9 @@ public class ItemMapper implements MapperApiRest<ItemDomain, ItemDto>, MapperRep
 
 	@Override
 	public ItemDto dominiodtoapi(ItemDomain i) {
-		return new ItemDto(i.getCodigo().getCodigo()
-						 , i.getCantidad().getCantidad()
-						 , i.getValor().getValor()
+		return new ItemDto(i.getCodigo().getValue()
+						 , i.getCantidad().getValue()
+						 , i.getValor().getValue()
 						 , ProductoMapper.INSTANCE.dominiodtoapi(i.getProducto()));
 	}
 

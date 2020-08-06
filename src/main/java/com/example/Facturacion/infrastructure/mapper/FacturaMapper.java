@@ -23,9 +23,9 @@ public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, 
 
 	@Override
 	public FacturaRest dominiodto(FacturaDomain i) {
-		return new FacturaRest(i.getCodigo().getCodigo()
-							 , i.getNombre().getName()
-							 , i.getValor().getValor()
+		return new FacturaRest(i.getCodigo().getValue()
+							 , i.getNombre().getValue()
+							 , i.getValor().getValue()
 							 , ItemMapper.INSTANCE.dominiodto(i.getItems()));
 	}
 
@@ -39,9 +39,9 @@ public class FacturaMapper implements MapperApiRest<FacturaDomain, FacturaDto>, 
 
 	@Override
 	public FacturaDto dominiodtoapi(FacturaDomain i) {
-		return new FacturaDto(i.getCodigo().getCodigo()
-							, i.getNombre().getName()
-							, i.getValor().getValor()
+		return new FacturaDto(i.getCodigo().getValue()
+							, i.getNombre().getValue()
+							, i.getValor().getValue()
 							, ItemMapper.INSTANCE.dominiodtoapi(i.getItems()));
 	}
 

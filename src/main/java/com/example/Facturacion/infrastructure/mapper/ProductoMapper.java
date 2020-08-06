@@ -22,7 +22,9 @@ public class ProductoMapper implements MapperApiRest<ProductoDomain, ProductoDto
 
 	@Override
 	public ProductoRest dominiodto(ProductoDomain i) {
-		return new ProductoRest(i.getCodigo().getCodigo(), i.getNombre().getName(), i.getValor().getValor());
+		return new ProductoRest(i.getCodigo().getValue(),
+				i.getNombre().getValue(),
+				i.getValor().getValue());
 	}
 
 	@Override
@@ -34,11 +36,8 @@ public class ProductoMapper implements MapperApiRest<ProductoDomain, ProductoDto
 
 	@Override
 	public ProductoDto dominiodtoapi(ProductoDomain i) {
-		return new ProductoDto( i.getCodigo().getCodigo(), i.getNombre().getName(), i.getValor().getValor());
+		return new ProductoDto( i.getCodigo().getValue(), 
+				i.getNombre().getValue(), 
+				i.getValor().getValue());
 	}
-
-	
-	
-	
-
 }

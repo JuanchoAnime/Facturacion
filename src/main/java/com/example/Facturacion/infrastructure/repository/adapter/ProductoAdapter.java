@@ -32,7 +32,7 @@ public class ProductoAdapter implements ProductoService
 	@Override
 	public ProductoDomain findByCode(Codigo codigo)
 	{
-		ProductoDto p = repo.findById(codigo.getCodigo()).get();
+		ProductoDto p = repo.findById(codigo.getValue()).get();
 		return ProductoMapper.INSTANCE.dtoDominioapi(p);
 	}
 
@@ -40,7 +40,7 @@ public class ProductoAdapter implements ProductoService
 	public List<ProductoDomain> findByCodes(List<Codigo> codes)
 	{
 		return  ProductoMapper.INSTANCE.dtoDominioapi(repo.findAllById(
-				codes.stream().map(c -> c.getCodigo()).collect(Collectors.toList())
+				codes.stream().map(c -> c.getValue()).collect(Collectors.toList())
 		));
 	}
 
@@ -62,6 +62,6 @@ public class ProductoAdapter implements ProductoService
 	public void deleteByCode(Codigo codigo)
 	{
 		this.findByCode(codigo);
-		repo.deleteById(codigo.getCodigo());
+		repo.deleteById(codigo.getValue());
 	}
 }
