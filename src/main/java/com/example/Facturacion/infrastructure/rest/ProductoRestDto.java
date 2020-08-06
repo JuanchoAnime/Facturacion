@@ -1,4 +1,4 @@
-package com.example.Facturacion.infrastructure.dto;
+package com.example.Facturacion.infrastructure.rest;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,9 +7,10 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter @Setter
 public class ProductoRestDto 
 {
-	@Getter @Setter private String codigo;
-	@Getter @Setter private String nombre;
-	@Getter @Setter private Double valor;
+	private String codigo;
+	private String nombre;
+	private Double valor;
 }

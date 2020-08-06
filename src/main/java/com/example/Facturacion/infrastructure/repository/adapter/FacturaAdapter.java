@@ -1,4 +1,4 @@
-package com.example.Facturacion.infrastructure.adapter;
+package com.example.Facturacion.infrastructure.repository.adapter;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.Facturacion.domain.modeldomain.FacturaDomain;
 import com.example.Facturacion.infrastructure.mapper.FacturaMapper;
-import com.example.Facturacion.infrastructure.repository.IFacturaRepository;
+import com.example.Facturacion.infrastructure.repository.database.IFacturaRepository;
 import com.example.Facturacion.shared.domain.Codigo;
 
 @Service

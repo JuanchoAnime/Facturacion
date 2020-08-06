@@ -11,15 +11,16 @@ import lombok.Setter;
 @Entity
 @Table(name = "producto")
 @NoArgsConstructor
+@Getter
+@Setter
 public class ProductoDto extends BaseEntity 
 {
 	private static final long serialVersionUID = 1L;
 
 	@Column
-	@Getter @Setter private String nombre;
-	
+	private String nombre;
 	@Column
-	@Getter @Setter private Double valor;
+	private Double valor;
 	
 	public ProductoDto(String codigo, String nombre, Double valor) {
 		super();

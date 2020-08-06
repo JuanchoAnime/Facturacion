@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Facturacion.application.ProductoApplication;
-import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
+import com.example.Facturacion.infrastructure.rest.ProductoRestDto;
 
 @RestController
 @RequestMapping("/api/producto")

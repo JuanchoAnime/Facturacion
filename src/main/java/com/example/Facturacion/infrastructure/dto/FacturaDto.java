@@ -15,17 +15,19 @@ import lombok.Setter;
 @Entity
 @Table(name = "factura")
 @NoArgsConstructor
+@Getter
+@Setter
 public class FacturaDto extends BaseEntity 
 {
 	private static final long serialVersionUID = 1L;
 	
 	@Column
-	@Getter @Setter private String nombre;
+	private String nombre;
 	@Column
-	@Getter @Setter private Double valor;
+	private Double valor;
 	@Column
 	@OneToMany(cascade = CascadeType.ALL)
-	@Getter @Setter private List<ItemDto> item;
+	private List<ItemDto> item;
 	
 	public FacturaDto(String codigo, String nombre, Double valor, List<ItemDto> item) {
 		this.setCodigo(codigo);

@@ -1,4 +1,4 @@
-package com.example.Facturacion.infrastructure.adapter;
+package com.example.Facturacion.infrastructure.repository.adapter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +10,7 @@ import com.example.Facturacion.domain.modeldomain.ProductoDomain;
 import com.example.Facturacion.domain.service.ProductoService;
 import com.example.Facturacion.infrastructure.dto.ProductoDto;
 import com.example.Facturacion.infrastructure.mapper.ProductoMapper;
-import com.example.Facturacion.infrastructure.repository.IProductoRepository;
+import com.example.Facturacion.infrastructure.repository.database.IProductoRepository;
 import com.example.Facturacion.shared.domain.Codigo;
 
 @Service

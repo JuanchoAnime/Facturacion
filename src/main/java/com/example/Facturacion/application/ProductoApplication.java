@@ -3,7 +3,7 @@ package com.example.Facturacion.application;
 import java.util.List;
 
 import com.example.Facturacion.domain.service.ProductoService;
-import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
+import com.example.Facturacion.infrastructure.rest.ProductoRestDto;
 import com.example.Facturacion.infrastructure.mapper.ProductoMapper;
 import com.example.Facturacion.shared.domain.Codigo;
 

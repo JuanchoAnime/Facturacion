@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import com.example.Facturacion.domain.service.FacturaService;
 import com.example.Facturacion.domain.service.ProductoService;
-import com.example.Facturacion.infrastructure.dto.FacturaRestDto;
-import com.example.Facturacion.infrastructure.dto.ProductoRestDto;
+import com.example.Facturacion.infrastructure.rest.FacturaRestDto;
+import com.example.Facturacion.infrastructure.rest.ProductoRestDto;
 import com.example.Facturacion.infrastructure.mapper.FacturaMapper;
 import com.example.Facturacion.infrastructure.mapper.ProductoMapper;
 import com.example.Facturacion.shared.domain.Codigo;;

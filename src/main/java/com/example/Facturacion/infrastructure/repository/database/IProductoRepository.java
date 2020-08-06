@@ -1,4 +1,4 @@
-package com.example.Facturacion.infrastructure.repository;
+package com.example.Facturacion.infrastructure.repository.database;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

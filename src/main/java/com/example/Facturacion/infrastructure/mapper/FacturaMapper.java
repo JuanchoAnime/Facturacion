@@ -2,7 +2,7 @@ package com.example.Facturacion.infrastructure.mapper;
 
 import com.example.Facturacion.domain.modeldomain.FacturaDomain;
 import com.example.Facturacion.infrastructure.dto.FacturaDto;
-import com.example.Facturacion.infrastructure.dto.FacturaRestDto;
+import com.example.Facturacion.infrastructure.rest.FacturaRestDto;
 import com.example.Facturacion.shared.domain.Codigo;
 import com.example.Facturacion.shared.domain.Nombre;
 import com.example.Facturacion.shared.domain.Valor;

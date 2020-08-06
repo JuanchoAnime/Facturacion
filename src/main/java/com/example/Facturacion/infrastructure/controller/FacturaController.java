@@ -4,19 +4,17 @@ import java.util.List;
 
 import com.example.Facturacion.domain.service.FacturaService;
 import com.example.Facturacion.domain.service.ProductoService;
-import com.example.Facturacion.infrastructure.adapter.FacturaAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Facturacion.application.FacturaApplication;
-import com.example.Facturacion.infrastructure.dto.FacturaRestDto;
+import com.example.Facturacion.infrastructure.rest.FacturaRestDto;
 
 @RestController
 @RequestMapping("/api/factura")

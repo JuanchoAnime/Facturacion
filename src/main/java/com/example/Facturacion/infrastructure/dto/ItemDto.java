@@ -12,18 +12,20 @@ import lombok.Setter;
 @Entity
 @Table(name = "item")
 @NoArgsConstructor
+@Getter
+@Setter
 public class ItemDto extends BaseEntity 
 {
 	private static final long serialVersionUID = 1L;
 
 	@Column
-	@Getter @Setter private int cantidad;
+	private int cantidad;
 	
 	@OneToOne(targetEntity = ProductoDto.class)
-	@Getter @Setter private ProductoDto producto;
+	private ProductoDto producto;
 	
 	@Column
-	@Getter @Setter private Double valor;
+	private Double valor;
 	
 	public ItemDto(String codigo, int cantidad, Double valor, ProductoDto producto) {
 		this.setCodigo(codigo);
