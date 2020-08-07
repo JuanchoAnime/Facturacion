@@ -23,12 +23,8 @@ public class ProductToRepositoryTest
 
     Logger logger = LoggerFactory.getLogger(ProductToRepositoryTest.class);
 
-    private IProductoRepository productoRepository;
-
     @Autowired
-    public ProductToRepositoryTest(IProductoRepository productoRepository) {
-        this.productoRepository = productoRepository;
-    }
+    private IProductoRepository productoRepository;
 
     @Test
     public void insertProduct()
