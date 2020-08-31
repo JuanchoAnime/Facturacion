@@ -1,5 +1,10 @@
 package com.example.Facturacion.infrastructure.controller;
 
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,4 +25,12 @@ public class DemoController
 		
 		return "BUENO";
 	}
+	
+	@Autowired
+    private MessageSource messageSource;
+     
+    @GetMapping
+    public String index(Locale locale) {
+        return messageSource.getMessage("error.notfound", null, locale);
+    }
 }
