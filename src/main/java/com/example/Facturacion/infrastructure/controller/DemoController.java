@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +31,7 @@ public class DemoController
     private MessageSource messageSource;
      
     @GetMapping
-    public String index(Locale locale) {
-        return messageSource.getMessage("error.notfound", null, locale);
+    public String index() {
+        return messageSource.getMessage("error.notfound", null, LocaleContextHolder.getLocale());
     }
 }
