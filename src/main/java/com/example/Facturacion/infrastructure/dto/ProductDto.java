@@ -12,14 +12,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ProductoDto extends BaseEntity 
+public class ProductDto extends BaseEntity 
 {
 	private static final long serialVersionUID = 1L;
 
 	private String nombre;
 	private Double valor;
 	
-	public ProductoDto(String codigo, String nombre, Double valor) {
+	public ProductDto(String codigo, String nombre, Double valor) {
 		super();
 		this.setCodigo(codigo);
 		this.nombre = nombre;

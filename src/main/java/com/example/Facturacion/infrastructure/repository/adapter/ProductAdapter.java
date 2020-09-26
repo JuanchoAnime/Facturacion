@@ -7,34 +7,34 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Facturacion.domain.modeldomain.ProductoDomain;
-import com.example.Facturacion.domain.service.ProductoService;
-import com.example.Facturacion.infrastructure.dto.ProductoDto;
+import com.example.Facturacion.domain.modeldomain.Product;
+import com.example.Facturacion.domain.service.ProductService;
+import com.example.Facturacion.infrastructure.dto.ProductDto;
 import com.example.Facturacion.infrastructure.mapper.v2.ProductMapper;
-import com.example.Facturacion.infrastructure.repository.database.IProductoRepository;
+import com.example.Facturacion.infrastructure.repository.database.ProductRepository;
 import com.example.Facturacion.shared.domain.Codigo;
 import com.example.Facturacion.shared.infrastructure.Util.Util;
 
 @Service
-public class ProductoAdapter implements ProductoService
+public class ProductAdapter implements ProductService
 {
-	private IProductoRepository repo;
+	private ProductRepository repo;
 
 	@Autowired
-	public ProductoAdapter(IProductoRepository repo) {
+	public ProductAdapter(ProductRepository repo) {
 		this.repo = repo;
 	}
 
 	@Override
-	public List<ProductoDomain> findAll()
+	public List<Product> findAll()
 	{
 		return ProductMapper.INSTANCE.getListByDto(repo.findAll());
 	}
 
 	@Override
-	public ProductoDomain findByCode(Codigo codigo)
+	public Product findByCode(Codigo codigo)
 	{
-		Optional<ProductoDto> product = repo.findById(codigo.getValue());
+		Optional<ProductDto> product = repo.findById(codigo.getValue());
 		if(!product.isPresent()) {
 			Util.INSTANCE.throwException("exception.productInvalid", codigo.getValue());
 			return null;
@@ -43,7 +43,7 @@ public class ProductoAdapter implements ProductoService
 	}
 
 	@Override
-	public List<ProductoDomain> findByCodes(List<Codigo> codes)
+	public List<Product> findByCodes(List<Codigo> codes)
 	{
 		return  ProductMapper.INSTANCE.getListByDto(repo.findAllById(
 				codes.stream().map(Codigo::getValue).collect(Collectors.toList())
@@ -51,14 +51,14 @@ public class ProductoAdapter implements ProductoService
 	}
 
 	@Override
-	public ProductoDomain save(ProductoDomain producto)
+	public Product save(Product producto)
 	{
-		ProductoDto p = ProductMapper.INSTANCE.getDto(producto);
+		ProductDto p = ProductMapper.INSTANCE.getDto(producto);
 		return  ProductMapper.INSTANCE.getByDto(repo.save(p));
 	}
 
 	@Override
-	public ProductoDomain update(ProductoDomain producto)
+	public Product update(Product producto)
 	{
 		this.findByCode(producto.getCodigo());
 		return  this.save(producto);

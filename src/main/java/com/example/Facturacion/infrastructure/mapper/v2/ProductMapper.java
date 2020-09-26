@@ -1,43 +1,43 @@
 package com.example.Facturacion.infrastructure.mapper.v2;
 
-import com.example.Facturacion.domain.modeldomain.ProductoDomain;
-import com.example.Facturacion.infrastructure.dto.ProductoDto;
-import com.example.Facturacion.infrastructure.rest.ProductoRest;
+import com.example.Facturacion.domain.modeldomain.Product;
+import com.example.Facturacion.infrastructure.dto.ProductDto;
+import com.example.Facturacion.infrastructure.rest.ProductRest;
 import com.example.Facturacion.shared.domain.Codigo;
 import com.example.Facturacion.shared.domain.NameProduct;
-import com.example.Facturacion.shared.domain.ValorProduct;
+import com.example.Facturacion.shared.domain.ValueProduct;
 import com.example.Facturacion.shared.infrastructure.GenericMapper;
 
-public class ProductMapper implements GenericMapper<ProductoRest, ProductoDomain, ProductoDto>
+public class ProductMapper implements GenericMapper<ProductRest, Product, ProductDto>
 {
 	public static ProductMapper INSTANCE = new ProductMapper(); 
 
 	@Override
-	public ProductoRest getRest(ProductoDomain domain) 
+	public ProductRest getRest(Product domain) 
 	{
-		return new ProductoRest(domain.getCodigo().getValue(), 
+		return new ProductRest(domain.getCodigo().getValue(), 
 				domain.getNombre().getValue(), domain.getValor().getValue());
 	}
 
 	@Override
-	public ProductoDto getDto(ProductoDomain domain) 
+	public ProductDto getDto(Product domain) 
 	{
-		return new ProductoDto(domain.getCodigo().getValue(), 
+		return new ProductDto(domain.getCodigo().getValue(), 
 				domain.getNombre().getValue(), domain.getValor().getValue());
 	}
 
 	@Override
-	public ProductoDomain getByRest(ProductoRest rest) 
+	public Product getByRest(ProductRest rest) 
 	{
-		return ProductoDomain.of(new Codigo(rest.getCodigo()), 
-				new NameProduct(rest.getNombre()), new ValorProduct(rest.getValor()));
+		return Product.of(new Codigo(rest.getCodigo()), 
+				new NameProduct(rest.getNombre()), new ValueProduct(rest.getValor()));
 	}
 
 	@Override
-	public ProductoDomain getByDto(ProductoDto dto) 
+	public Product getByDto(ProductDto dto) 
 	{
-		return ProductoDomain.of(new Codigo(dto.getCodigo()), 
-				new NameProduct(dto.getNombre()), new ValorProduct(dto.getValor()));
+		return Product.of(new Codigo(dto.getCodigo()), 
+				new NameProduct(dto.getNombre()), new ValueProduct(dto.getValor()));
 	}
 
 }

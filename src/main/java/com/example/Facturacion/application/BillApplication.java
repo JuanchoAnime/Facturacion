@@ -3,40 +3,40 @@ package com.example.Facturacion.application;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.example.Facturacion.domain.service.FacturaService;
-import com.example.Facturacion.domain.service.ProductoService;
-import com.example.Facturacion.infrastructure.rest.FacturaRest;
+import com.example.Facturacion.domain.service.BillService;
+import com.example.Facturacion.domain.service.ProductService;
+import com.example.Facturacion.infrastructure.rest.BillRest;
 import com.example.Facturacion.infrastructure.rest.ItemRest;
-import com.example.Facturacion.infrastructure.rest.ProductoRest;
+import com.example.Facturacion.infrastructure.rest.ProductRest;
 import com.example.Facturacion.infrastructure.mapper.v2.BillMapper;
 import com.example.Facturacion.infrastructure.mapper.v2.ProductMapper;
 import com.example.Facturacion.shared.domain.Codigo;
 
-public class FacturaApplication 
+public class BillApplication 
 {
-	private FacturaService service;
-	private ProductoService serviceProducto;
+	private BillService service;
+	private ProductService serviceProducto;
 
-	public FacturaApplication(FacturaService service,
-							  ProductoService serviceProducto) {
+	public BillApplication(BillService service,
+							  ProductService serviceProducto) {
 		this.service = service;
 		this.serviceProducto = serviceProducto;
 	}
 
-	public List<FacturaRest> findAll()
+	public List<BillRest> findAll()
 	{
 		return BillMapper.INSTANCE.getListRest(service.findAll());
 	}
 	
-	public FacturaRest findByCode(String codigo)
+	public BillRest findByCode(String codigo)
 	{
 		return BillMapper.INSTANCE.getRest(service.findByCode(new Codigo(codigo)));
 	}
 	
-	public FacturaRest save(FacturaRest factura)
+	public BillRest save(BillRest factura)
 	{
 		factura.setCodigo(GetID.GetId());
-		List<ProductoRest> productrestdto =  ProductMapper.INSTANCE.getListRest(serviceProducto.findByCodes(
+		List<ProductRest> productrestdto =  ProductMapper.INSTANCE.getListRest(serviceProducto.findByCodes(
 				factura.getItems().stream()
 								  .map(irdto -> new Codigo(irdto.getProducto().getCodigo()))
 								  .collect(Collectors.toList())

@@ -5,11 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DemoRest 
+@Getter @Setter
+public class ProductRest 
 {
-	private String name;
+	private String codigo;
+	private String nombre;
+	private Double valor;
 }

@@ -3,8 +3,8 @@ package com.example.Facturacion.infrastructure.repository;
 import static org.junit.Assert.assertEquals;
 
 import com.example.Facturacion.application.GetID;
-import com.example.Facturacion.infrastructure.dto.ProductoDto;
-import com.example.Facturacion.infrastructure.repository.database.IProductoRepository;
+import com.example.Facturacion.infrastructure.dto.ProductDto;
+import com.example.Facturacion.infrastructure.repository.database.ProductRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -24,13 +24,13 @@ public class ProductToRepositoryTest
     Logger logger = LoggerFactory.getLogger(ProductToRepositoryTest.class);
 
     @Autowired
-    private IProductoRepository productoRepository;
+    private ProductRepository productoRepository;
 
     @Test
     public void insertProduct()
     {
         logger.info("START TEST SAVE PROUCT REPOSITORY");
-        ProductoDto p = productoRepository.save(new ProductoDto(code, name, value));
+        ProductDto p = productoRepository.save(new ProductDto(code, name, value));
         assertEquals(code, p.getCodigo());
         assertEquals(name, p.getNombre());
         assertEquals(value, p.getValor());

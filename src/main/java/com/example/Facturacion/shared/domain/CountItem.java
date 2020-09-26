@@ -2,11 +2,11 @@ package com.example.Facturacion.shared.domain;
 
 import com.example.Facturacion.shared.infrastructure.Util.Util;
 
-public class CantidadItem 
+public class CountItem 
 {
 	private final int value;
 	
-	public CantidadItem(int cantidad)
+	public CountItem(int cantidad)
 	{
 		this.value = cantidad;
 		if(cantidad<1)

@@ -2,7 +2,7 @@ package com.example.Facturacion.infrastructure.controller;
 
 import java.util.List;
 
-import com.example.Facturacion.domain.service.ProductoService;
+import com.example.Facturacion.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Facturacion.application.ProductoApplication;
-import com.example.Facturacion.infrastructure.rest.ProductoRest;
+import com.example.Facturacion.application.ProductApplication;
+import com.example.Facturacion.infrastructure.rest.ProductRest;
 
 @RestController
-@RequestMapping("/api/producto")
-public class ProductoController
+@RequestMapping("/api/product")
+public class ProductController
 {
-	private ProductoApplication app;
+	private ProductApplication app;
 
 	@Autowired
-	public ProductoController(ProductoService productService) {
-		this.app = new ProductoApplication(productService);
+	public ProductController(ProductService productService) {
+		this.app = new ProductApplication(productService);
 	}
 
 	@GetMapping
-	public List<ProductoRest> findAll()
+	public List<ProductRest> findAll()
 	{
 		return app.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ProductoRest findByCode(@PathVariable String id)
+	public ProductRest findByCode(@PathVariable String id)
 	{
 		return app.findByCode(id);
 	}
 	
 	@PostMapping
-	public ProductoRest save(@RequestBody ProductoRest producto)
+	public ProductRest save(@RequestBody ProductRest producto)
 	{
 		return app.save(producto);
 	}
 	
 	@PutMapping("/{id}")
-	public ProductoRest update(@PathVariable String id, @RequestBody ProductoRest producto)
+	public ProductRest update(@PathVariable String id, @RequestBody ProductRest producto)
 	{
 		return app.update(producto, id);
 	}

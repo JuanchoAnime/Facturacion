@@ -12,6 +12,6 @@ public class ItemRest
 {
 	private String codigo;
 	private int cantidad;
-	private ProductoRest producto;
+	private ProductRest producto;
 	private Double valor;
 }

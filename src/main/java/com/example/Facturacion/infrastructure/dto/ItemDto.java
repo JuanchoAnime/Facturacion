@@ -19,12 +19,12 @@ public class ItemDto extends BaseEntity
 
 	private int cantidad;
 	
-	@OneToOne(targetEntity = ProductoDto.class)
-	private ProductoDto producto;
+	@OneToOne(targetEntity = ProductDto.class)
+	private ProductDto producto;
 	
 	private Double valor;
 	
-	public ItemDto(String codigo, int cantidad, Double valor, ProductoDto producto) {
+	public ItemDto(String codigo, int cantidad, Double valor, ProductDto producto) {
 		this.setCodigo(codigo);
 		this.cantidad = cantidad;
 		this.valor = valor;

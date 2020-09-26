@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class FacturaRest 
+public class BillRest 
 {
 	private String codigo;
 	private String nombre;

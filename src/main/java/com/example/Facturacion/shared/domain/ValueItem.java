@@ -2,10 +2,10 @@ package com.example.Facturacion.shared.domain;
 
 import com.example.Facturacion.shared.infrastructure.Util.Util;
 
-public class ValorItem {
+public class ValueItem {
 	private final Double value;
 	
-	public ValorItem(Double valor) {
+	public ValueItem(Double valor) {
 		this.value = valor;
 		if(valor<1)
 			Util.INSTANCE.throwException("exception.valueItemError", Double.toString(valor));

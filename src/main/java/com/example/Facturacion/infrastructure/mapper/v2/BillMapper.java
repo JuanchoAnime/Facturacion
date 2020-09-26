@@ -1,43 +1,43 @@
 package com.example.Facturacion.infrastructure.mapper.v2;
 
-import com.example.Facturacion.domain.modeldomain.FacturaDomain;
-import com.example.Facturacion.infrastructure.dto.FacturaDto;
-import com.example.Facturacion.infrastructure.rest.FacturaRest;
+import com.example.Facturacion.domain.modeldomain.Bill;
+import com.example.Facturacion.infrastructure.dto.BillDto;
+import com.example.Facturacion.infrastructure.rest.BillRest;
 import com.example.Facturacion.shared.domain.Codigo;
 import com.example.Facturacion.shared.domain.NameBill;
 import com.example.Facturacion.shared.domain.ValueBill;
 import com.example.Facturacion.shared.infrastructure.GenericMapper;
 
-public class BillMapper implements GenericMapper<FacturaRest, FacturaDomain, FacturaDto>
+public class BillMapper implements GenericMapper<BillRest, Bill, BillDto>
 {
 	public static BillMapper INSTANCE = new BillMapper();
 
 	@Override
-	public FacturaRest getRest(FacturaDomain domain) 
+	public BillRest getRest(Bill domain) 
 	{
-		return new FacturaRest(domain.getCodigo().getValue(), domain.getNombre().getValue(), 
-				domain.getValor().getValue(), ItemV2Mapper.INSTANCE.getListRest(domain.getItems()));
+		return new BillRest(domain.getCodigo().getValue(), domain.getNombre().getValue(), 
+				domain.getValor().getValue(), ItemMapper.INSTANCE.getListRest(domain.getItems()));
 	}
 
 	@Override
-	public FacturaDto getDto(FacturaDomain domain) 
+	public BillDto getDto(Bill domain) 
 	{
-		return new FacturaDto(domain.getCodigo().getValue(), domain.getNombre().getValue(), 
-				domain.getValor().getValue(), ItemV2Mapper.INSTANCE.getListDto(domain.getItems()));
+		return new BillDto(domain.getCodigo().getValue(), domain.getNombre().getValue(), 
+				domain.getValor().getValue(), ItemMapper.INSTANCE.getListDto(domain.getItems()));
 	}
 
 	@Override
-	public FacturaDomain getByRest(FacturaRest rest) 
+	public Bill getByRest(BillRest rest) 
 	{
-		return FacturaDomain.of(new Codigo(rest.getCodigo()), new NameBill(rest.getNombre()),
-				new ValueBill(rest.getValor()), ItemV2Mapper.INSTANCE.getListByRest(rest.getItems()));
+		return Bill.of(new Codigo(rest.getCodigo()), new NameBill(rest.getNombre()),
+				new ValueBill(rest.getValor()), ItemMapper.INSTANCE.getListByRest(rest.getItems()));
 	}
 
 	@Override
-	public FacturaDomain getByDto(FacturaDto dto) 
+	public Bill getByDto(BillDto dto) 
 	{
-		return FacturaDomain.of(new Codigo(dto.getCodigo()), new NameBill(dto.getNombre()),
-				new ValueBill(dto.getValor()), ItemV2Mapper.INSTANCE.getListByDto(dto.getItem()));
+		return Bill.of(new Codigo(dto.getCodigo()), new NameBill(dto.getNombre()),
+				new ValueBill(dto.getValor()), ItemMapper.INSTANCE.getListByDto(dto.getItem()));
 	}
 
 }

@@ -3,36 +3,36 @@ package com.example.Facturacion.infrastructure.repository.adapter;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.Facturacion.domain.service.FacturaService;
+import com.example.Facturacion.domain.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Facturacion.domain.modeldomain.FacturaDomain;
-import com.example.Facturacion.infrastructure.dto.FacturaDto;
+import com.example.Facturacion.domain.modeldomain.Bill;
+import com.example.Facturacion.infrastructure.dto.BillDto;
 import com.example.Facturacion.infrastructure.mapper.v2.BillMapper;
-import com.example.Facturacion.infrastructure.repository.database.IFacturaRepository;
+import com.example.Facturacion.infrastructure.repository.database.BillRepository;
 import com.example.Facturacion.shared.domain.Codigo;
 import com.example.Facturacion.shared.infrastructure.Util.Util;
 
 @Service
-public class FacturaAdapter implements FacturaService
+public class BillAdapter implements BillService
 {
-	private IFacturaRepository repo;
+	private BillRepository repo;
 
 	@Autowired
-	public FacturaAdapter(IFacturaRepository repo) {
+	public BillAdapter(BillRepository repo) {
 		this.repo = repo;
 	}
 
 	@Override
-	public List<FacturaDomain> findAll() {
+	public List<Bill> findAll() {
 		return BillMapper.INSTANCE.getListByDto(repo.findAll());
 	}
 
 	@Override
-	public FacturaDomain findByCode(Codigo codigo)
+	public Bill findByCode(Codigo codigo)
 	{
-		Optional<FacturaDto> bill = repo.findById(codigo.getValue());
+		Optional<BillDto> bill = repo.findById(codigo.getValue());
 		if(!bill.isPresent()) {
 			Util.INSTANCE.throwException("exception.billInvalid", codigo.getValue());
 			return null;
@@ -41,7 +41,7 @@ public class FacturaAdapter implements FacturaService
 	}
 
 	@Override
-	public FacturaDomain save(FacturaDomain factura)
+	public Bill save(Bill factura)
 	{
 		return BillMapper.INSTANCE.getByDto(repo.save(BillMapper.INSTANCE.getDto(factura)));
 	}

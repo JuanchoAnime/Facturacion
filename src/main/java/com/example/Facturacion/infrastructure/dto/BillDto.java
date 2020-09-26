@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class FacturaDto extends BaseEntity 
+public class BillDto extends BaseEntity 
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -26,7 +26,7 @@ public class FacturaDto extends BaseEntity
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<ItemDto> item;
 	
-	public FacturaDto(String codigo, String nombre, Double valor, List<ItemDto> item) {
+	public BillDto(String codigo, String nombre, Double valor, List<ItemDto> item) {
 		this.setCodigo(codigo);
 		this.nombre = nombre;
 		this.valor = valor;
