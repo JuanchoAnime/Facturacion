@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import com.example.Facturacion.domain.modeldomain.ProductoDomain;
@@ -14,19 +13,16 @@ import com.example.Facturacion.infrastructure.dto.ProductoDto;
 import com.example.Facturacion.infrastructure.mapper.v2.ProductMapper;
 import com.example.Facturacion.infrastructure.repository.database.IProductoRepository;
 import com.example.Facturacion.shared.domain.Codigo;
-import com.example.Facturacion.shared.infrastructure.exception.ProductInvalidException;
+import com.example.Facturacion.shared.infrastructure.Util.Util;
 
 @Service
 public class ProductoAdapter implements ProductoService
 {
 	private IProductoRepository repo;
-	private MessageSource messageSource;
 
 	@Autowired
-	public ProductoAdapter(IProductoRepository repo,
-			MessageSource messageSource) {
+	public ProductoAdapter(IProductoRepository repo) {
 		this.repo = repo;
-		this.messageSource = messageSource;
 	}
 
 	@Override
@@ -40,7 +36,8 @@ public class ProductoAdapter implements ProductoService
 	{
 		Optional<ProductoDto> product = repo.findById(codigo.getValue());
 		if(!product.isPresent()) {
-			throw new ProductInvalidException(messageSource);
+			Util.INSTANCE.throwException("exception.productInvalid", codigo.getValue());
+			return null;
 		}
 		return ProductMapper.INSTANCE.getByDto(product.get());
 	}

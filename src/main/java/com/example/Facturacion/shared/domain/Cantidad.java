@@ -1,6 +1,6 @@
 package com.example.Facturacion.shared.domain;
 
-import com.example.Facturacion.infrastructure.exception.CantidadErrorException;
+import com.example.Facturacion.shared.infrastructure.Util.Util;
 
 public class Cantidad 
 {
@@ -10,7 +10,7 @@ public class Cantidad
 	{
 		this.value = cantidad;
 		if(cantidad<1)
-			throw new CantidadErrorException();
+			Util.INSTANCE.throwException("exception.cantidadItemError", Integer.toString(cantidad));
 	}
 
 	public int getValue() { return value; }

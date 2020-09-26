@@ -1,6 +1,6 @@
 package com.example.Facturacion.shared.domain;
 
-import com.example.Facturacion.infrastructure.exception.ValueErrorException;
+import com.example.Facturacion.shared.infrastructure.Util.Util;
 
 public class Codigo 
 {
@@ -8,12 +8,12 @@ public class Codigo
 	
 	public Codigo(String codigo) 
 	{
+		this.value = codigo;
 		try {
-			this.value = codigo;
 			if (codigo.length() < 5 || codigo.length() > 33) 
-				throw new ValueErrorException();
-		} catch (Exception e) {
-			throw new ValueErrorException();
+				Util.INSTANCE.throwException("exception.codeError", codigo);
+		} catch (Exception e) { 
+			Util.INSTANCE.throwException("exception.codeError", codigo);
 		}
 	}
 

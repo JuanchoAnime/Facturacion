@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.example.Facturacion.domain.service.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import com.example.Facturacion.domain.modeldomain.FacturaDomain;
@@ -13,17 +12,15 @@ import com.example.Facturacion.infrastructure.dto.FacturaDto;
 import com.example.Facturacion.infrastructure.mapper.v2.BillMapper;
 import com.example.Facturacion.infrastructure.repository.database.IFacturaRepository;
 import com.example.Facturacion.shared.domain.Codigo;
-import com.example.Facturacion.shared.infrastructure.exception.BillInvalidException;
+import com.example.Facturacion.shared.infrastructure.Util.Util;
 
 @Service
 public class FacturaAdapter implements FacturaService
 {
 	private IFacturaRepository repo;
-	private MessageSource messageSource;
 
 	@Autowired
-	public FacturaAdapter(IFacturaRepository repo, 
-			MessageSource messageSource) {
+	public FacturaAdapter(IFacturaRepository repo) {
 		this.repo = repo;
 	}
 
@@ -37,7 +34,8 @@ public class FacturaAdapter implements FacturaService
 	{
 		Optional<FacturaDto> bill = repo.findById(codigo.getValue());
 		if(!bill.isPresent()) {
-			throw new BillInvalidException(messageSource);
+			Util.INSTANCE.throwException("exception.billInvalid", codigo.getValue());
+			return null;
 		}
 		return BillMapper.INSTANCE.getByDto(bill.get());
 	}
