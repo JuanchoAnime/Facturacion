@@ -11,9 +11,9 @@ public class Codigo
 		this.value = codigo;
 		try {
 			if (codigo.length() < 5 || codigo.length() > 33) 
-				Util.INSTANCE.throwException("exception.codeError", codigo);
+				Util.throwException("exception.codeError", codigo);
 		} catch (Exception e) { 
-			Util.INSTANCE.throwException("exception.codeError", codigo);
+			Util.throwException("exception.codeError", codigo);
 		}
 	}
 

@@ -36,7 +36,7 @@ public class ProductAdapter implements ProductService
 	{
 		Optional<ProductDto> product = repo.findById(codigo.getValue());
 		if(!product.isPresent()) {
-			Util.INSTANCE.throwException("exception.productInvalid", codigo.getValue());
+			Util.throwException("exception.productInvalid", codigo.getValue());
 			return null;
 		}
 		return ProductMapper.INSTANCE.getByDto(product.get());

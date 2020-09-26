@@ -9,9 +9,9 @@ public class ValueProduct
 	public ValueProduct(Double valor) {
 	this.value = valor;
 	if(valor<1)
-		Util.INSTANCE.throwException("exception.valueProductError", Double.toString(valor));
+		Util.throwException("exception.valueProductError", Double.toString(valor));
 	if(valor>9999999.0)
-		Util.INSTANCE.throwException("exception.valueProductError", Double.toString(valor));
+		Util.throwException("exception.valueProductError", Double.toString(valor));
 	}
 
 

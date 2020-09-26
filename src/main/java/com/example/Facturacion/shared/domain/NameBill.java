@@ -12,9 +12,9 @@ public class NameBill
 		try 
 		{
 			if (name.length() < 0 || !name.matches("[A-Z].*")) 
-				Util.INSTANCE.throwException("exception.invalidNameBill", name);
+				Util.throwException("exception.invalidNameBill", name);
 		} catch (Exception e) {
-			Util.INSTANCE.throwException("exception.invalidNameBill", name);
+			Util.throwException("exception.invalidNameBill", name);
 		}
 	}
 

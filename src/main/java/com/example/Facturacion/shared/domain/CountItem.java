@@ -10,7 +10,7 @@ public class CountItem
 	{
 		this.value = cantidad;
 		if(cantidad<1)
-			Util.INSTANCE.throwException("exception.cantidadItemError", Integer.toString(cantidad));
+			Util.throwException("exception.cantidadItemError", Integer.toString(cantidad));
 	}
 
 	public int getValue() { return value; }
