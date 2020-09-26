@@ -3,9 +3,9 @@ package com.example.Facturacion.infrastructure.mapper.v2;
 import com.example.Facturacion.domain.modeldomain.ItemDomain;
 import com.example.Facturacion.infrastructure.dto.ItemDto;
 import com.example.Facturacion.infrastructure.rest.ItemRest;
-import com.example.Facturacion.shared.domain.Cantidad;
+import com.example.Facturacion.shared.domain.CantidadItem;
 import com.example.Facturacion.shared.domain.Codigo;
-import com.example.Facturacion.shared.domain.Valor;
+import com.example.Facturacion.shared.domain.ValorItem;
 import com.example.Facturacion.shared.infrastructure.GenericMapper;
 
 public class ItemV2Mapper implements GenericMapper<ItemRest, ItemDomain, ItemDto> 
@@ -29,15 +29,15 @@ public class ItemV2Mapper implements GenericMapper<ItemRest, ItemDomain, ItemDto
 	@Override
 	public ItemDomain getByRest(ItemRest rest) 
 	{
-		return ItemDomain.of(new Codigo(rest.getCodigo()), new Cantidad(rest.getCantidad()), 
-				ProductMapper.INSTANCE.getByRest(rest.getProducto()), new Valor(rest.getValor()));
+		return ItemDomain.of(new Codigo(rest.getCodigo()), new CantidadItem(rest.getCantidad()), 
+				ProductMapper.INSTANCE.getByRest(rest.getProducto()), new ValorItem(rest.getValor()));
 	}
 
 	@Override
 	public ItemDomain getByDto(ItemDto dto) 
 	{
-		return ItemDomain.of(new Codigo(dto.getCodigo()), new Cantidad(dto.getCantidad()), 
-				ProductMapper.INSTANCE.getByDto(dto.getProducto()), new Valor(dto.getValor()));
+		return ItemDomain.of(new Codigo(dto.getCodigo()), new CantidadItem(dto.getCantidad()), 
+				ProductMapper.INSTANCE.getByDto(dto.getProducto()), new ValorItem(dto.getValor()));
 	}
 
 }

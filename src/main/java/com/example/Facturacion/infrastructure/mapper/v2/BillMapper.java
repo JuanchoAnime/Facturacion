@@ -4,8 +4,8 @@ import com.example.Facturacion.domain.modeldomain.FacturaDomain;
 import com.example.Facturacion.infrastructure.dto.FacturaDto;
 import com.example.Facturacion.infrastructure.rest.FacturaRest;
 import com.example.Facturacion.shared.domain.Codigo;
-import com.example.Facturacion.shared.domain.Nombre;
-import com.example.Facturacion.shared.domain.Valor;
+import com.example.Facturacion.shared.domain.NameBill;
+import com.example.Facturacion.shared.domain.ValueBill;
 import com.example.Facturacion.shared.infrastructure.GenericMapper;
 
 public class BillMapper implements GenericMapper<FacturaRest, FacturaDomain, FacturaDto>
@@ -29,15 +29,15 @@ public class BillMapper implements GenericMapper<FacturaRest, FacturaDomain, Fac
 	@Override
 	public FacturaDomain getByRest(FacturaRest rest) 
 	{
-		return FacturaDomain.of(new Codigo(rest.getCodigo()), new Nombre(rest.getNombre()),
-				new Valor(rest.getValor()), ItemV2Mapper.INSTANCE.getListByRest(rest.getItems()));
+		return FacturaDomain.of(new Codigo(rest.getCodigo()), new NameBill(rest.getNombre()),
+				new ValueBill(rest.getValor()), ItemV2Mapper.INSTANCE.getListByRest(rest.getItems()));
 	}
 
 	@Override
 	public FacturaDomain getByDto(FacturaDto dto) 
 	{
-		return FacturaDomain.of(new Codigo(dto.getCodigo()), new Nombre(dto.getNombre()),
-				new Valor(dto.getValor()), ItemV2Mapper.INSTANCE.getListByDto(dto.getItem()));
+		return FacturaDomain.of(new Codigo(dto.getCodigo()), new NameBill(dto.getNombre()),
+				new ValueBill(dto.getValor()), ItemV2Mapper.INSTANCE.getListByDto(dto.getItem()));
 	}
 
 }

@@ -4,8 +4,8 @@ import com.example.Facturacion.domain.modeldomain.ProductoDomain;
 import com.example.Facturacion.infrastructure.dto.ProductoDto;
 import com.example.Facturacion.infrastructure.rest.ProductoRest;
 import com.example.Facturacion.shared.domain.Codigo;
-import com.example.Facturacion.shared.domain.Nombre;
-import com.example.Facturacion.shared.domain.Valor;
+import com.example.Facturacion.shared.domain.NameProduct;
+import com.example.Facturacion.shared.domain.ValorProduct;
 import com.example.Facturacion.shared.infrastructure.GenericMapper;
 
 public class ProductMapper implements GenericMapper<ProductoRest, ProductoDomain, ProductoDto>
@@ -30,14 +30,14 @@ public class ProductMapper implements GenericMapper<ProductoRest, ProductoDomain
 	public ProductoDomain getByRest(ProductoRest rest) 
 	{
 		return ProductoDomain.of(new Codigo(rest.getCodigo()), 
-				new Nombre(rest.getNombre()), new Valor(rest.getValor()));
+				new NameProduct(rest.getNombre()), new ValorProduct(rest.getValor()));
 	}
 
 	@Override
 	public ProductoDomain getByDto(ProductoDto dto) 
 	{
 		return ProductoDomain.of(new Codigo(dto.getCodigo()), 
-				new Nombre(dto.getNombre()), new Valor(dto.getValor()));
+				new NameProduct(dto.getNombre()), new ValorProduct(dto.getValor()));
 	}
 
 }
