@@ -5,6 +5,10 @@ import com.example.Facturacion.shared.infrastructure.exception.NotFoundException
 
 public class Util
 {
+	private Util() {
+		
+	}
+	
 	public static void throwException(String code, String param) 
 	{
 		throw new BusinessException(code + ": " + param);
