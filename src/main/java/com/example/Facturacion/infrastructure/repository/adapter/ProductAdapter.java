@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.Facturacion.domain.modeldomain.Product;
@@ -26,9 +27,9 @@ public class ProductAdapter implements ProductService
 	}
 
 	@Override
-	public List<Product> findAll()
+	public List<Product> findAll(Pageable pageable)
 	{
-		return ProductMapper.INSTANCE.getListByDto(repo.findAll());
+		return ProductMapper.INSTANCE.getListByDto(ProductMapper.INSTANCE.getDtoByPage(repo.findAll(pageable)));
 	}
 
 	@Override

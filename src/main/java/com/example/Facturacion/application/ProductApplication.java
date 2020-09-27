@@ -2,6 +2,8 @@ package com.example.Facturacion.application;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.example.Facturacion.domain.service.ProductService;
 import com.example.Facturacion.infrastructure.rest.ProductRest;
 import com.example.Facturacion.infrastructure.mapper.v2.ProductMapper;
@@ -15,9 +17,9 @@ public class ProductApplication
 		this.service = service;
 	}
 
-	public List<ProductRest> findAll()
+	public List<ProductRest> findAll(Pageable pageable)
 	{
-		return ProductMapper.INSTANCE.getListRest(service.findAll());
+		return ProductMapper.INSTANCE.getListRest(service.findAll(pageable));
 	}
 	
 	public ProductRest findByCode(String codigo)
@@ -27,7 +29,7 @@ public class ProductApplication
 	
 	public ProductRest save(ProductRest product)
 	{
-		product.setCodigo(GetID.GetId());
+		product.setCodigo(GetID.getId());
 		return ProductMapper.INSTANCE.getRest(service.save(ProductMapper.INSTANCE.getByRest(product)));
 	}
 	

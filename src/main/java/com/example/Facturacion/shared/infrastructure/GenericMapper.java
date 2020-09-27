@@ -3,29 +3,29 @@ package com.example.Facturacion.shared.infrastructure;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public interface GenericMapper<Rest, Domain, Dto>
+public interface GenericMapper<R, M, D>
 {
-	Rest getRest(Domain domain);
+	R getRest(M domain);
 	
-	Dto getDto(Domain domain);
+	D getDto(M domain);
 	
-	Domain getByRest(Rest rest);
+	M getByRest(R rest);
 	
-	Domain getByDto(Dto dto);
+	M getByDto(D dto);
 	
-	default List<Rest> getListRest(List<Domain> domains){
-		return domains.stream().map(domain -> getRest(domain)).collect(Collectors.toList());
+	default List<R> getListRest(List<M> domains){
+		return domains.stream().map(this::getRest).collect(Collectors.toList());
 	}
 	
-	default List<Dto> getListDto(List<Domain> domains){
-		return domains.stream().map(domain -> getDto(domain)).collect(Collectors.toList());
+	default List<D> getListDto(List<M> domains){
+		return domains.stream().map(this::getDto).collect(Collectors.toList());
 	}
 	
-	default List<Domain> getListByRest(List<Rest> rests){
-		return rests.stream().map(rest -> getByRest(rest)).collect(Collectors.toList());
+	default List<M> getListByRest(List<R> rests){
+		return rests.stream().map(this::getByRest).collect(Collectors.toList());
 	}
 	
-	default List<Domain> getListByDto(List<Dto> dtos){
-		return dtos.stream().map(dto -> getByDto(dto)).collect(Collectors.toList());
+	default List<M> getListByDto(List<D> dtos){
+		return dtos.stream().map(this::getByDto).collect(Collectors.toList());
 	}
 }

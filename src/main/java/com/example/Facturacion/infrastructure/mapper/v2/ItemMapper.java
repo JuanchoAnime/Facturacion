@@ -10,7 +10,7 @@ import com.example.Facturacion.shared.infrastructure.GenericMapper;
 
 public class ItemMapper implements GenericMapper<ItemRest, Item, ItemDto> 
 {
-	public static ItemMapper INSTANCE = new ItemMapper();
+	public static final ItemMapper INSTANCE = new ItemMapper();
 
 	@Override
 	public ItemRest getRest(Item domain) 

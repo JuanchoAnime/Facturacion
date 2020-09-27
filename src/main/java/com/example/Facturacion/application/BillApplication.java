@@ -35,14 +35,14 @@ public class BillApplication
 	
 	public BillRest save(BillRest factura)
 	{
-		factura.setCodigo(GetID.GetId());
+		factura.setCodigo(GetID.getId());
 		List<ProductRest> productrestdto =  ProductMapper.INSTANCE.getListRest(serviceProducto.findByCodes(
 				factura.getItems().stream()
 								  .map(irdto -> new Codigo(irdto.getProducto().getCodigo()))
 								  .collect(Collectors.toList())
 		));
 		factura.getItems().stream().forEach(item -> {
-			item.setCodigo(GetID.GetId());
+			item.setCodigo(GetID.getId());
 			item.setProducto(productrestdto.stream()
 											.filter(pro -> pro.getCodigo().equals(item.getProducto().getCodigo()))
 											.findFirst().get());

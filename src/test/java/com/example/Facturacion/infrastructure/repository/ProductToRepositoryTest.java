@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ProductToRepositoryTest
 {
-    private final String code = GetID.GetId();
+    private final String code = GetID.getId();
     private final String name = "Pony Malta";
     private final Double value = 6000.0;
 

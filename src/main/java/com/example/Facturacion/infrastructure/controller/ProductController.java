@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.Facturacion.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +29,9 @@ public class ProductController
 	}
 
 	@GetMapping
-	public List<ProductRest> findAll()
+	public List<ProductRest> findAll(Pageable pageable)
 	{
-		return app.findAll();
+		return app.findAll(pageable);
 	}
 	
 	@GetMapping("/{id}")

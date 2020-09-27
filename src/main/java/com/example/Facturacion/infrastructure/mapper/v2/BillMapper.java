@@ -10,7 +10,7 @@ import com.example.Facturacion.shared.infrastructure.GenericMapper;
 
 public class BillMapper implements GenericMapper<BillRest, Bill, BillDto>
 {
-	public static BillMapper INSTANCE = new BillMapper();
+	public static final BillMapper INSTANCE = new BillMapper();
 
 	@Override
 	public BillRest getRest(Bill domain) 

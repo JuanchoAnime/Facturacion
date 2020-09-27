@@ -1,5 +1,9 @@
 package com.example.Facturacion.infrastructure.mapper.v2;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+
 import com.example.Facturacion.domain.modeldomain.Product;
 import com.example.Facturacion.infrastructure.dto.ProductDto;
 import com.example.Facturacion.infrastructure.rest.ProductRest;
@@ -10,7 +14,7 @@ import com.example.Facturacion.shared.infrastructure.GenericMapper;
 
 public class ProductMapper implements GenericMapper<ProductRest, Product, ProductDto>
 {
-	public static ProductMapper INSTANCE = new ProductMapper(); 
+	public static final ProductMapper INSTANCE = new ProductMapper(); 
 
 	@Override
 	public ProductRest getRest(Product domain) 
@@ -38,6 +42,11 @@ public class ProductMapper implements GenericMapper<ProductRest, Product, Produc
 	{
 		return Product.of(new Codigo(dto.getCodigo()), 
 				new NameProduct(dto.getNombre()), new ValueProduct(dto.getValor()));
+	}
+	
+	public List<ProductDto> getDtoByPage(Page<ProductDto> page)
+	{
+		return page.toList();
 	}
 
 }

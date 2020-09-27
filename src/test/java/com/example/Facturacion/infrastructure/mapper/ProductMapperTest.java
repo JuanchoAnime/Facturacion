@@ -14,7 +14,7 @@ public class ProductMapperTest
 {
     Logger logger = LoggerFactory.getLogger(ProductMapperTest.class);
 
-    private final String code = GetID.GetId();
+    private final String code = GetID.getId();
     private final String name = "Pony Malta";
     private final Double value = 6000.0;
 
