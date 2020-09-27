@@ -34,7 +34,7 @@ public class BillAdapter implements BillService
 	{
 		Optional<BillDto> bill = repo.findById(codigo.getValue());
 		if(!bill.isPresent()) {
-			Util.throwException("exception.billInvalid", codigo.getValue());
+			Util.notFoundException("exception.billInvalid", codigo.getValue());
 			return null;
 		}
 		return BillMapper.INSTANCE.getByDto(bill.get());
