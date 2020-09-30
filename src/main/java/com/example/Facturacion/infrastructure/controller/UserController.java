@@ -1,5 +1,7 @@
 package com.example.Facturacion.infrastructure.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +17,14 @@ public class UserController
 {
 	private final UserApplication userApplication;
 	
-	public UserController(UserService userService) {
-		this.userApplication = new UserApplication(userService);
+	@Autowired
+	public UserController(UserService userService,
+			BCryptPasswordEncoder passwordEncoder) {
+		this.userApplication = new UserApplication(userService, passwordEncoder);
 	}
 	
 	@PostMapping
 	public UserRest save(@RequestBody UserRest userRest) {
-		userRest.setPassword("{noop}" + userRest.getPassword());
 		return userApplication.save(userRest);
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.example.Facturacion.domain.service.UserService;
@@ -17,18 +18,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 {
 	private final UserService userService;
 	private final String tokenSecurity;
+	private final BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
 	public WebSecurityConfiguration(UserService userService,
-			@Value("${security.key}") String tokenSecurity) {
+			@Value("${security.key}") String tokenSecurity,
+			BCryptPasswordEncoder passwordEncoder) {
 		this.userService = userService;
 		this.tokenSecurity = tokenSecurity;
+		this.passwordEncoder = passwordEncoder;
 	}
-	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService);
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
 	}
 	
 	@Override
