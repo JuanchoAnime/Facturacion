@@ -11,6 +11,7 @@ import com.example.Facturacion.infrastructure.rest.ProductRest;
 import com.example.Facturacion.infrastructure.mapper.v2.BillMapper;
 import com.example.Facturacion.infrastructure.mapper.v2.ProductMapper;
 import com.example.Facturacion.shared.domain.Codigo;
+import com.example.Facturacion.shared.domain.Id;
 
 public class BillApplication 
 {
@@ -38,13 +39,13 @@ public class BillApplication
 		factura.setCodigo(GetID.getId());
 		List<ProductRest> productrestdto =  ProductMapper.INSTANCE.getListRest(serviceProducto.findByCodes(
 				factura.getItems().stream()
-								  .map(irdto -> new Codigo(irdto.getProducto().getCodigo()))
+								  .map(irdto -> new Id(irdto.getProducto().getId()))
 								  .collect(Collectors.toList())
 		));
 		factura.getItems().stream().forEach(item -> {
 			item.setCodigo(GetID.getId());
 			item.setProducto(productrestdto.stream()
-											.filter(pro -> pro.getCodigo().equals(item.getProducto().getCodigo()))
+											.filter(pro -> pro.getId().equals(item.getProducto().getId()))
 											.findFirst().get());
 			item.setValor(item.getCantidad() * item.getProducto().getValor());
 			

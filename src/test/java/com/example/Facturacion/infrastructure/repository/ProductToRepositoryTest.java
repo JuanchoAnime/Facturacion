@@ -1,8 +1,8 @@
 package com.example.Facturacion.infrastructure.repository;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import com.example.Facturacion.application.GetID;
 import com.example.Facturacion.infrastructure.dto.ProductDto;
 import com.example.Facturacion.infrastructure.repository.database.ProductRepository;
 import org.junit.Test;
@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ProductToRepositoryTest
 {
-    private final String code = GetID.getId();
     private final String name = "Pony Malta";
     private final Double value = 6000.0;
 
@@ -30,8 +29,8 @@ public class ProductToRepositoryTest
     public void insertProduct()
     {
         logger.info("START TEST SAVE PROUCT REPOSITORY");
-        ProductDto p = productoRepository.save(new ProductDto(code, name, value));
-        assertEquals(code, p.getCodigo());
+        ProductDto p = productoRepository.save(new ProductDto(0, name, value));
+        assertNotEquals(0, p.getId());
         assertEquals(name, p.getNombre());
         assertEquals(value, p.getValor());
         logger.info("FINALLY TEST SAVE PROUCT REPOSITORY");

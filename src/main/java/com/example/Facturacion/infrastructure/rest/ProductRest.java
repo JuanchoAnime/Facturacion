@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter @Setter
 public class ProductRest 
 {
-	private String codigo;
+	private Integer id;
 	private String nombre;
 	private Double valor;
 }

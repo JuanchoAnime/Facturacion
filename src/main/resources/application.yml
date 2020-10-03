@@ -13,6 +13,8 @@ spring:
     platform: postgres
     url: jdbc:postgresql://localhost:5432/factura_test
     username: postgres
+  flyway:
+    baseline-on-migrate: true
   jpa:
     generate-ddl: true
     hibernate:

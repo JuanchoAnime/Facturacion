@@ -35,7 +35,7 @@ public class ProductController
 	}
 	
 	@GetMapping("/{id}")
-	public ProductRest findByCode(@PathVariable String id)
+	public ProductRest findByCode(@PathVariable Integer id)
 	{
 		return app.findByCode(id);
 	}
@@ -47,13 +47,13 @@ public class ProductController
 	}
 	
 	@PutMapping("/{id}")
-	public ProductRest update(@PathVariable String id, @RequestBody ProductRest producto)
+	public ProductRest update(@PathVariable Integer id, @RequestBody ProductRest producto)
 	{
 		return app.update(producto, id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteByCode(@PathVariable String id)
+	public void deleteByCode(@PathVariable Integer id)
 	{
 		app.deleteByCode(id);
 	}

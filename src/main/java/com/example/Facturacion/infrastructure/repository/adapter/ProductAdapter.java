@@ -13,7 +13,7 @@ import com.example.Facturacion.domain.service.ProductService;
 import com.example.Facturacion.infrastructure.dto.ProductDto;
 import com.example.Facturacion.infrastructure.mapper.v2.ProductMapper;
 import com.example.Facturacion.infrastructure.repository.database.ProductRepository;
-import com.example.Facturacion.shared.domain.Codigo;
+import com.example.Facturacion.shared.domain.Id;
 import com.example.Facturacion.shared.infrastructure.Util.Util;
 
 @Service
@@ -33,21 +33,21 @@ public class ProductAdapter implements ProductService
 	}
 
 	@Override
-	public Product findByCode(Codigo codigo)
+	public Product findByCode(Id codigo)
 	{
 		Optional<ProductDto> product = repo.findById(codigo.getValue());
 		if(!product.isPresent()) {
-			Util.notFoundException("exception.productInvalid", codigo.getValue());
+			Util.notFoundException("exception.productInvalid", codigo.getValue().toString());
 			return null;
 		}
 		return ProductMapper.INSTANCE.getByDto(product.get());
 	}
 
 	@Override
-	public List<Product> findByCodes(List<Codigo> codes)
+	public List<Product> findByCodes(List<Id> codes)
 	{
 		return  ProductMapper.INSTANCE.getListByDto(repo.findAllById(
-				codes.stream().map(Codigo::getValue).collect(Collectors.toList())
+				codes.stream().map(Id::getValue).collect(Collectors.toList())
 		));
 	}
 
@@ -61,12 +61,12 @@ public class ProductAdapter implements ProductService
 	@Override
 	public Product update(Product producto)
 	{
-		this.findByCode(producto.getCodigo());
+		this.findByCode(producto.getId());
 		return  this.save(producto);
 	}
 
 	@Override
-	public void deleteByCode(Codigo codigo)
+	public void deleteByCode(Id codigo)
 	{
 		this.findByCode(codigo);
 		repo.deleteById(codigo.getValue());

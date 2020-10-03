@@ -10,8 +10,8 @@ import com.example.Facturacion.infrastructure.dto.ProductDto;
 
 @Repository
 public interface ProductRepository 
-				extends JpaRepository<ProductDto, String>,
-				 PagingAndSortingRepository<ProductDto, String>{
+				extends JpaRepository<ProductDto, Integer>,
+				 PagingAndSortingRepository<ProductDto, Integer>{
 	
 	public abstract Page<ProductDto> findAll(Pageable pageable);
 	

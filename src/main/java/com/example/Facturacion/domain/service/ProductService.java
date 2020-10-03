@@ -5,19 +5,19 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 
 import com.example.Facturacion.domain.modeldomain.Product;
-import com.example.Facturacion.shared.domain.Codigo;
+import com.example.Facturacion.shared.domain.Id;
 
 public interface ProductService
 {
 	List<Product> findAll(Pageable pageable);
 
-	Product findByCode(Codigo codigo);
+	Product findByCode(Id codigo);
 
-	List<Product> findByCodes(List<Codigo> codes);
+	List<Product> findByCodes(List<Id> codes);
 	
 	Product save(Product producto);
 	
 	Product update(Product producto);
 	
-	void deleteByCode(Codigo codigo);
+	void deleteByCode(Id codigo);
 }
