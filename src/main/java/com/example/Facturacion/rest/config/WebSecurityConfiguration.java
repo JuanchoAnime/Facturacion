@@ -39,6 +39,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 		http.csrf().disable().authorizeRequests()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/api/user").permitAll()
+			.antMatchers("/api/reports/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.addFilterBefore(new LoginFilter("/login", authenticationManager(), tokenSecurity), 
