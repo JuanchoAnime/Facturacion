@@ -29,7 +29,7 @@ public class ProductAdapter implements ProductService
 	@Override
 	public List<Product> findAll(Pageable pageable)
 	{
-		return ProductMapper.INSTANCE.getListByDto(ProductMapper.INSTANCE.getDtoByPage(repo.findAll(pageable)));
+		return ProductMapper.INSTANCE.getListByDto(repo.findAll(pageable).toList());
 	}
 
 	@Override
